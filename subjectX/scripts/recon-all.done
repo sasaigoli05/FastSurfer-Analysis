@@ -1,0 +1,13 @@
+------------------------------
+SUBJECT subjectX
+START_TIME Sat May 18 11:08:02 EDT 2024
+END_TIME Sat May 18 11:09:59 EDT 2024
+RUNTIME_HOURS 0.033
+USER suhanasaigoli
+HOST Suhans-MacBook-Pro-2.local
+PROCESSOR x86_64
+OS Darwin
+UNAME Darwin Suhans-MacBook-Pro-2.local 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_X86_64 x86_64
+VERSION 7.4.1 (freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460)
+CMDPATH /Applications/freesurfer/7.4.1/bin/recon-all
+CMDARGS -subject subjectX -hemi rh -smooth2 -inflate2 -curvHK -no-isrunning -threads 4 -itkthreads 4

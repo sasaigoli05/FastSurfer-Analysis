@@ -1,0 +1,63 @@
+Log file for defect2seg
+Sat May 18 10:59:48 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/scripts
+/Applications/freesurfer/7.4.1/bin/defect2seg --s subjectX --rh-only --cortex
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+defect2seg 7.4.1
+Darwin Suhans-MacBook-Pro-2.local 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_X86_64 x86_64
+pid 93389
+mri_label2label --label-cortex /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/aseg.presurf.mgz 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.nofix.cortex.label
+mri_label2vol --defects /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.defect_labels /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/orig.mgz 1000 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/lh.surface.defects.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/lh.nofix.cortex.label
+ supposed to be reproducible but seed not set
+Contraining to label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/lh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=1000, merge=0
+Writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/lh.surface.defects.mgz
+mris_defects_pointset -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.orig.nofix -d /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.defect_labels -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.defects.pointset --label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/lh.nofix.cortex.label
+Reading in surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.orig.nofix
+Reading in defect segmentation /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/lh.defect_labels
+Reading in label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/lh.nofix.cortex.label
+#VMPC# mris_defects_pointset 0
+mris_defects_pointset done
+ 
+Started at Sat May 18 10:59:42 EDT 2024 
+Ended   at Sat May 18 11:00:17 EDT 2024
+Defect2seg-Run-Time-Sec 35
+Defect2seg-Run-Time-Min 0.70
+Defect2seg-Run-Time-Hours 0.01
+ 
+defect2seg Done
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+6 non-cortical segments detected
+only using segment with 8435 vertices
+erasing segment 1 (vno[0] = 52730)
+erasing segment 2 (vno[0] = 94902)
+erasing segment 3 (vno[0] = 97289)
+erasing segment 4 (vno[0] = 98065)
+erasing segment 5 (vno[0] = 98801)
+mri_label2vol --defects /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.defect_labels /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/orig.mgz 2000 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/rh.surface.defects.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.nofix.cortex.label
+ supposed to be reproducible but seed not set
+Contraining to label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=2000, merge=0
+Writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/rh.surface.defects.mgz
+mris_defects_pointset -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix -d /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.defect_labels -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.defects.pointset --label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.nofix.cortex.label
+Reading in surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix
+Reading in defect segmentation /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.defect_labels
+Reading in label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.nofix.cortex.label
+#VMPC# mris_defects_pointset 0
+mris_defects_pointset done
+ 
+Started at Sat May 18 10:59:48 EDT 2024 
+Ended   at Sat May 18 11:00:23 EDT 2024
+Defect2seg-Run-Time-Sec 35
+Defect2seg-Run-Time-Min 0.70
+Defect2seg-Run-Time-Hours 0.01
+ 
+defect2seg Done

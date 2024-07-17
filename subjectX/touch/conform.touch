@@ -1,0 +1,1 @@
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/rawavg.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/orig.mgz --conform

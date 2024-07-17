@@ -1,0 +1,24 @@
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri
+/Applications/freesurfer/7.4.1/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+FreeSurferEnv.csh 7.4.1
+Darwin Suhans-MacBook-Pro-2.local 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_X86_64 x86_64
+Sat May 18 09:51:55 EDT 2024
+tmpdir is ./tmp.mri_nu_correct.mni.77994
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o ./tmp.mri_nu_correct.mni.77994/nu0.mgz --dtype uchar
+AntsN4BiasFieldCorrectionFs done
+mri_convert ./tmp.mri_nu_correct.mni.77994/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert ./tmp.mri_nu_correct.mni.77994/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from ./tmp.mri_nu_correct.mni.77994/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Sat May 18 09:55:21 EDT 2024
+mri_nu_correct.mni done

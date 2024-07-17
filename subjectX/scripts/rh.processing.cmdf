@@ -1,0 +1,102 @@
+#!/bin/bash
+echo 
+echo "================== Creating surfaces rh - orig.nofix =================="
+echo 
+echo 'mri_pretess /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/brain.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled-pretess127.mgz'
+mri_pretess /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/brain.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled-pretess127.mgz
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mri_mc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled-pretess127.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix'
+mri_mc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/filled-pretess127.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo "mris_info /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix | tr -s ' ' | grep -q 'vertex locs : surfaceRAS'" 
+ mris_info /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix | tr -s ' ' | grep -q 'vertex locs : surfaceRAS' 
+if [ ${PIPESTATUS[1]} -ne 0 ] ; then echo "Incorrect header information detected in /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix: vertex locs is not set to surfaceRAS. Exiting... "; exit 1 ; fi
+echo 'mris_extract_main_component /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix'
+mris_extract_main_component /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_smooth -n 10 -nw -seed 1234 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.smoothwm.nofix'
+mris_smooth -n 10 -nw -seed 1234 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.smoothwm.nofix
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo  
+echo "=================== Creating surfaces rh - qsphere ===================="
+echo 
+echo 'recon-all -subject subjectX -hemi rh -inflate1 -no-isrunning  -threads 4 -itkthreads 4'
+recon-all -subject subjectX -hemi rh -inflate1 -no-isrunning  -threads 4 -itkthreads 4
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project_wrapper.py --hemi rh --sdir /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf --subject subjectX --threads=4 --py '\''python3.10 -s'\'' --binpath /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/'
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project_wrapper.py --hemi rh --sdir /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf --subject subjectX --threads=4 --py 'python3.10 -s' --binpath /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 
+echo "=================== Creating surfaces rh - fix ========================"
+echo 
+echo 'recon-all -subject subjectX -hemi rh -fix -autodetgwstats -white-preaparc -cortex-label -no-isrunning  -threads 4 -itkthreads 4'
+recon-all -subject subjectX -hemi rh -fix -autodetgwstats -white-preaparc -cortex-label -no-isrunning  -threads 4 -itkthreads 4
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo " "
+echo "================== Creating surfaces rh - inflate2 ===================="
+echo " "
+echo 'recon-all -subject subjectX -hemi rh -smooth2 -inflate2 -curvHK -no-isrunning  -threads 4 -itkthreads 4'
+recon-all -subject subjectX -hemi rh -smooth2 -inflate2 -curvHK -no-isrunning  -threads 4 -itkthreads 4
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo " "
+echo "=========== Creating surfaces rh - map input asegdkt_segfile to surf ==============="
+echo " "
+echo 'python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py --inseg /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/aparc.DKTatlas+aseg.orig.mgz --insurf /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.white.preaparc --incort /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.cortex.label --outaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.aparc.DKTatlas.mapped.annot --seglut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/rh.DKTatlaslookup.txt --surflut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/DKTatlaslookup.txt --projmm 0.6 --radius 2'
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py --inseg /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri/aparc.DKTatlas+aseg.orig.mgz --insurf /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.white.preaparc --incort /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.cortex.label --outaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.aparc.DKTatlas.mapped.annot --seglut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/rh.DKTatlaslookup.txt --surflut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/DKTatlaslookup.txt --projmm 0.6 --radius 2
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo " "
+echo "============ Creating surfaces rh - FS sphere, surfreg ==============="
+echo " "
+echo 'recon-all -subject subjectX -hemi rh -sphere  -no-isrunning -threads 4 -itkthreads 4'
+recon-all -subject subjectX -hemi rh -sphere  -no-isrunning -threads 4 -itkthreads 4
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf//rotate_sphere.py        --srcsphere /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere        --srcaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.aparc.DKTatlas.mapped.annot        --trgsphere /Applications/freesurfer/7.4.1/subjects/fsaverage/surf/rh.sphere        --trgaparc /Applications/freesurfer/7.4.1/subjects/fsaverage/label/rh.aparc.annot        --out /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.angles.txt'
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf//rotate_sphere.py        --srcsphere /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere        --srcaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/label/rh.aparc.DKTatlas.mapped.annot        --trgsphere /Applications/freesurfer/7.4.1/subjects/fsaverage/surf/rh.sphere        --trgaparc /Applications/freesurfer/7.4.1/subjects/fsaverage/label/rh.aparc.annot        --out /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.angles.txt
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_register -curv -norot -rotate `cat /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.angles.txt`        /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere        /Applications/freesurfer/7.4.1/average/rh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif        /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere.reg'
+mris_register -curv -norot -rotate `cat /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.angles.txt`        /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere        /Applications/freesurfer/7.4.1/average/rh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif        /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf/rh.sphere.reg
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo " "
+echo "================ Creating surfaces rh - white and pial direct ==================="
+echo " "
+pushd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri
+echo 'mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --seg aseg.presurf.mgz --wm wm.mgz --invol brain.finalsurfs.mgz --rh --i ../surf/rh.white.preaparc --o ../surf/rh.white --white --nsmooth 0 --rip-label ../label/rh.cortex.label --rip-bg --rip-surf ../surf/rh.white.preaparc --aparc ../label/rh.aparc.DKTatlas.mapped.annot'
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --seg aseg.presurf.mgz --wm wm.mgz --invol brain.finalsurfs.mgz --rh --i ../surf/rh.white.preaparc --o ../surf/rh.white --white --nsmooth 0 --rip-label ../label/rh.cortex.label --rip-bg --rip-surf ../surf/rh.white.preaparc --aparc ../label/rh.aparc.DKTatlas.mapped.annot
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --seg aseg.presurf.mgz --wm wm.mgz --invol brain.finalsurfs.mgz --rh --i ../surf/rh.white --o ../surf/rh.pial.T1 --pial --nsmooth 0 --rip-label ../label/rh.cortex+hipamyg.label --pin-medial-wall ../label/rh.cortex.label --aparc ../label/rh.aparc.DKTatlas.mapped.annot --repulse-surf ../surf/rh.white --white-surf ../surf/rh.white'
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --seg aseg.presurf.mgz --wm wm.mgz --invol brain.finalsurfs.mgz --rh --i ../surf/rh.white --o ../surf/rh.pial.T1 --pial --nsmooth 0 --rip-label ../label/rh.cortex+hipamyg.label --pin-medial-wall ../label/rh.cortex.label --aparc ../label/rh.aparc.DKTatlas.mapped.annot --repulse-surf ../surf/rh.white --white-surf ../surf/rh.white
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+popd
+pushd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/surf
+echo "ln -sf rh.pial.T1 rh.pial" 
+ ln -sf rh.pial.T1 rh.pial 
+if [ ${PIPESTATUS[0]} -ne 0 ]
+then 
+  echo "cp rh.pial.T1 rh.pial" 
+   cp rh.pial.T1 rh.pial 
+  if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+fi
+popd
+pushd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/subjectX/mri
+echo 'mris_jacobian ../surf/rh.white ../surf/rh.sphere.reg ../surf/rh.jacobian_white'
+mris_jacobian ../surf/rh.white ../surf/rh.sphere.reg ../surf/rh.jacobian_white
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --curv-map ../surf/rh.white 2 10 ../surf/rh.curv'
+mris_place_surface --curv-map ../surf/rh.white 2 10 ../surf/rh.curv
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --area-map ../surf/rh.white ../surf/rh.area'
+mris_place_surface --area-map ../surf/rh.white ../surf/rh.area
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --curv-map ../surf/rh.pial 2 10 ../surf/rh.curv.pial'
+mris_place_surface --curv-map ../surf/rh.pial 2 10 ../surf/rh.curv.pial
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --area-map ../surf/rh.pial ../surf/rh.area.pial'
+mris_place_surface --area-map ../surf/rh.pial ../surf/rh.area.pial
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+echo 'mris_place_surface --thickness ../surf/rh.white ../surf/rh.pial 20 5 ../surf/rh.thickness'
+mris_place_surface --thickness ../surf/rh.white ../surf/rh.pial 20 5 ../surf/rh.thickness
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi
+popd
+echo 'recon-all -subject subjectX -hemi rh -curvstats -no-isrunning  -threads 4 -itkthreads 4'
+recon-all -subject subjectX -hemi rh -curvstats -no-isrunning  -threads 4 -itkthreads 4
+if [ ${PIPESTATUS[0]} -ne 0 ] ; then exit 1 ; fi

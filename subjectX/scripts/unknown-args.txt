@@ -1,0 +1,12 @@
+-subject
+subjectX
+-hemi
+rh
+-smooth2
+-inflate2
+-curvHK
+-no-isrunning
+-threads
+4
+-itkthreads
+4
