@@ -1,0 +1,82 @@
+# Title Segmentation Statistics
+#
+# generating_program segstats.py
+# cmdline /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/CerebNet/run_prediction.py --t1 /Volumes/drive/disc1/OAS1_0001_MR1/mri//T1.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/aparc.DKTatlas+aseg.deep.mgz --conformed_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/orig.mgz --cereb_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/cerebellum.CerebNet.nii.gz --seg_log /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/scripts/deep-seg.log --async_io --batch_size 1 --viewagg_device auto --device auto --threads 4 --norm_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/orig_nu.mgz --cereb_statsfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/stats/cerebellum.CerebNet.stats --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+# sysname  Darwin
+# hostname suhans-mbp-2.wireless-1x.unc.edu
+# machine  x86_64
+# user       suhanasaigoli
+# anatomy_type volume
+#
+# SegVolFile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/cerebellum.CerebNet.nii.gz
+# SegVolFileTimestamp 2024/06/17 13:43:19
+# ColorTable /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/config/FreeSurferColorLUT.txt
+# ColorTableTimestamp 2024/05/11 21:58:43
+# PVVolFile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001/mri/orig_nu.mgz
+# PVVolFileTimestamp 2024/06/17 13:42:09
+#
+# Only reporting non-empty segmentations
+# VoxelVolume_mm3 1.0
+# TableCol  1 ColHeader Index
+# TableCol  1 FieldName Index
+# TableCol  1 Units     NA
+# TableCol  2 ColHeader SegId
+# TableCol  2 FieldName Segmentation Id
+# TableCol  2 Units     NA
+# TableCol  3 ColHeader NVoxels
+# TableCol  3 FieldName Number of Voxels
+# TableCol  3 Units     NA
+# TableCol  4 ColHeader Volume_mm3
+# TableCol  4 FieldName Volume
+# TableCol  4 Units     mm^3
+# TableCol  5 ColHeader StructName
+# TableCol  5 FieldName Structure Name
+# TableCol  5 Units     NA
+# TableCol  6 ColHeader normMean
+# TableCol  6 FieldName Intensity normMean
+# TableCol  6 Units     MR
+# TableCol  7 ColHeader normStdDev
+# TableCol  7 FieldName Intensity normStdDev
+# TableCol  7 Units     MR
+# TableCol  8 ColHeader normMin
+# TableCol  8 FieldName Intensity normMin
+# TableCol  8 Units     MR
+# TableCol  9 ColHeader normMax
+# TableCol  9 FieldName Intensity normMax
+# TableCol  9 Units     MR
+# TableCol  10 ColHeader normRange
+# TableCol  10 FieldName Intensity normRange
+# TableCol  10 Units     MR
+# NRows 30
+# NTableCols 10
+# ColHeaders  Index SegId NVoxels Volume_mm3 StructName normMean normStdDev normMin normMax normRange
+ 1   7  9710 10655.204 Left-Cerebellum-White-Matter  101.0658  8.6275 69.0000 125.0000 56.0000
+ 2   8 41587 39539.230 Left-Cerebellum-Cortex         68.5949 10.1754 31.0000 108.0000 77.0000
+ 3  46  9672 10542.594 Right-Cerebellum-White-Matter 106.0906  9.2520 71.0000 133.0000 62.0000
+ 4  47 42396 40511.216 Right-Cerebellum-Cortex        70.2660 10.4472 32.0000 111.0000 79.0000
+ 5 601  2996  2810.626 Cbm_Left_I_IV                  76.2173 11.5873 38.0000 104.0000 66.0000
+ 6 602  3108  2889.913 Cbm_Right_I_IV                 76.9440 12.6217 36.0000 105.0000 69.0000
+ 7 603  3456  3272.903 Cbm_Left_V                     77.0263 10.7555 37.0000 108.0000 71.0000
+ 8 604  2895  2708.432 Cbm_Right_V                    78.7927 11.3191 37.0000 111.0000 74.0000
+ 9 605  7546  7242.860 Cbm_Left_VI                    74.4353 10.5248 34.0000 105.0000 71.0000
+10 606  1694  1547.978 Cbm_Vermis_VI                  72.6499 13.9579 30.0000 105.0000 75.0000
+11 607  7687  7367.434 Cbm_Right_VI                   77.7878 10.4007 33.0000 104.0000 71.0000
+12 608  9465  8754.321 Cbm_Left_CrusI                 66.4557 10.9900 31.0000  98.0000 67.0000
+13 610  9985  9332.861 Cbm_Right_CrusI                66.9795 10.8274 32.0000  98.0000 66.0000
+14 611  5413  5131.541 Cbm_Left_CrusII                63.6643  9.2345 34.0000  91.0000 57.0000
+15 613  4825  4669.523 Cbm_Right_CrusII               62.6512  9.3171 32.0000  90.0000 58.0000
+16 614  3639  3555.389 Cbm_Left_VIIb                  61.1261  9.4617 31.0000  91.0000 60.0000
+17 616  4049  4006.943 Cbm_Right_VIIb                 61.9563  9.5243 32.0000  94.0000 62.0000
+18 617  3250  3203.933 Cbm_Left_VIIIa                 62.8012  8.4529 31.0000  91.0000 60.0000
+19 619  3146  3152.612 Cbm_Right_VIIIa                65.6634  9.5631 38.0000  96.0000 58.0000
+20 620  2538  2489.453 Cbm_Left_VIIIb                 65.8125  7.5401 32.0000  88.0000 56.0000
+21 622  3233  3105.137 Cbm_Right_VIIIb                71.6533  8.4488 39.0000  96.0000 57.0000
+22 623  2887  2717.065 Cbm_Left_IX                    69.6051 10.2299 34.0000  97.0000 63.0000
+23 624   840   784.504 Cbm_Vermis_IX                  73.7833 11.8076 31.0000  97.0000 66.0000
+24 625  3064  2911.928 Cbm_Right_IX                   72.9475 11.3302 35.0000 105.0000 70.0000
+25 626   397   361.138 Cbm_Left_X                     71.2191 12.2639 38.0000 105.0000 67.0000
+26 627   361   313.616 Cbm_Vermis_X                   66.3712 15.0215 31.0000  98.0000 67.0000
+27 628   404   366.434 Cbm_Right_X                    74.5248 12.4093 40.0000 111.0000 71.0000
+28 630   734   658.656 Cbm_Vermis_VII                 70.0518 11.3477 33.0000  97.0000 64.0000
+29 631  1858  1751.433 Cbm_Vermis_VIII                71.6787 12.8462 34.0000 103.0000 69.0000
+30 632  5487  5056.187 Cbm_Vermis                     71.7339 13.0123 30.0000 105.0000 75.0000

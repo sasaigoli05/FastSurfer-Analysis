@@ -1,0 +1,13 @@
+------------------------------
+SUBJECT OAS1_0001-3
+START_TIME Sat Jun 29 17:40:27 EDT 2024
+END_TIME Sat Jun 29 19:37:49 EDT 2024
+RUNTIME_HOURS  1.956
+USER suhanasaigoli
+HOST Suhans-MacBook-Pro-2.local
+PROCESSOR x86_64
+OS Darwin
+UNAME Darwin Suhans-MacBook-Pro-2.local 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+VERSION $Id$
+CMDPATH ./recon-surf.sh
+CMDARGS --sid OAS1_0001-3 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --t1 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/orig.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/aparc.DKTatlas+aseg.deep.mgz --threads 4 --py python3.10 -s --parallel --3T

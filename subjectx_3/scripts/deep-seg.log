@@ -1,0 +1,59 @@
+Version: 2.3.0-dev+92e6653
+Log file for segmentation FastSurferCNN/run_prediction.py
+Fri Jun 14 15:25:16 EDT 2024
+
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/run_prediction.py --t1 /Applications/freesurfer/7.4.1/subjects/bert/mri//T1.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --conformed_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --brainmask_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/mask.mgz --aseg_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto_noCCseg.mgz --sid subjectx_3 --seg_log /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/deep-seg.log --vox_size min --batch_size 1 --viewagg_device auto --device auto --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+[INFO: run_prediction.py:  652]: Checking or downloading default checkpoints ...
+[INFO: common.py:  831]: Single subject with absolute file path for input.
+[INFO: common.py:  889]: Analyzing single subject /Applications/freesurfer/7.4.1/subjects/bert/mri//T1.mgz
+[INFO: common.py:  990]: Output will be stored in Subjects Directory: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+[INFO: common.py:  114]: Using device: cpu
+[INFO: run_prediction.py:  245]: Running view aggregation on cpu
+[INFO: inference.py:  200]: Loading checkpoint /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/checkpoints/aparc_vinn_coronal_v2.0.0.pkl
+[INFO: inference.py:  200]: Loading checkpoint /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/checkpoints/aparc_vinn_sagittal_v2.0.0.pkl
+[INFO: inference.py:  200]: Loading checkpoint /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/checkpoints/aparc_vinn_axial_v2.0.0.pkl
+[INFO: run_prediction.py:  324]: Successfully loaded image from /Applications/freesurfer/7.4.1/subjects/bert/mri/T1.mgz.
+[INFO: run_prediction.py:  441]: Output image directory /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig does not exist. Creating it now...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig/001.mgz.
+[INFO: run_prediction.py:  454]: Successfully saved image   as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz.
+[INFO: run_prediction.py:  400]: Run coronal prediction
+[INFO: dataset.py:   78]: Loading Coronal with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  404]: Inference on 256 batches for coronal successful
+[INFO: inference.py:  466]: Coronal inference on /Applications/freesurfer/7.4.1/subjects/bert/mri/T1.mgz finished in 233.1099 seconds
+[INFO: run_prediction.py:  400]: Run sagittal prediction
+[INFO: dataset.py:   69]: Loading Sagittal with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  404]: Inference on 256 batches for sagittal successful
+[INFO: inference.py:  466]: Sagittal inference on /Applications/freesurfer/7.4.1/subjects/bert/mri/T1.mgz finished in 237.8503 seconds
+[INFO: run_prediction.py:  400]: Run axial prediction
+[INFO: dataset.py:   74]: Loading Axial with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  404]: Inference on 256 batches for axial successful
+[INFO: inference.py:  466]: Axial inference on /Applications/freesurfer/7.4.1/subjects/bert/mri/T1.mgz finished in 236.2012 seconds
+[INFO: run_prediction.py:  454]: Successfully saved image   as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz.
+[INFO: run_prediction.py:  729]: Creating brainmask based on segmentation...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/mask.mgz.
+[INFO: run_prediction.py:  748]: Creating aseg based on segmentation...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto_noCCseg.mgz.
+[INFO: run_prediction.py:  767]: Running volume-based QC check on segmentation...
+INFO: Running N4 bias-field correction
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/N4_bias_correct.py --in /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --rescale /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig_nu.mgz --aseg /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --threads 4
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/segstats.py --segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --segstatsfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/stats/aseg+DKT.stats --normfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig_nu.mgz --threads 4 --empty --excludeid 0 --ids 2 4 5 7 8 10 11 12 13 14 15 16 17 18 24 26 28 31 41 43 44 46 47 49 50 51 52 53 54 58 60 63 77 251 252 253 254 255 1002 1003 1005 1006 1007 1008 1009 1010 1011 1012 1013 1014 1015 1016 1017 1018 1019 1020 1021 1022 1023 1024 1025 1026 1027 1028 1029 1030 1031 1034 1035 2002 2003 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030 2031 2034 2035 --lut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/config/FreeSurferColorLUT.txt
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/segstats.py:726: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is deprecated and will be removed in a future version. Use ``sep='\s+'`` instead
+  return pd.read_csv(
+Partial volume stats for 100 labels written to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/stats/aseg+DKT.stats.
+Calculation took 4.92 seconds using up to 4 threads.
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/CerebNet/run_prediction.py --t1 /Applications/freesurfer/7.4.1/subjects/bert/mri//T1.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --conformed_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --cereb_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/cerebellum.CerebNet.nii.gz --seg_log /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/deep-seg.log --async_io --batch_size 1 --viewagg_device auto --device auto --threads 4 --norm_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig_nu.mgz --cereb_statsfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/stats/cerebellum.CerebNet.stats --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+[INFO: run_prediction.py:  157]: Checking or downloading default checkpoints ...
+[INFO: common.py:  831]: Single subject with absolute file path for input.
+[INFO: common.py:  889]: Analyzing single subject /Applications/freesurfer/7.4.1/subjects/bert/mri//T1.mgz
+[INFO: common.py:  114]: Using device: cpu
+[INFO: common.py:  114]: Using viewagg_device: cpu
+[INFO: inference.py:  424]: 24-06-14_15:37:59
+[INFO: inference.py:  347]: Saving CerebNet cerebellum segmentation at /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/cerebellum.CerebNet.nii.gz
+[INFO: inference.py:  500]: Subject 1/1 with id 'T1.mgz' processed in 51.33 sec.
+./recon-surf.sh --sid subjectx_3 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --t1 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --threads 4 --py python3.10 -s --parallel --3T
+Version: 2.3.0-dev+92e6653
+Log file for segmentation FastSurferCNN/run_prediction.py
+Mon Jun 17 13:08:45 EDT 2024
+
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/run_prediction.py --t1 /Volumes/drive/disc1/OAS1_0001_MR1/mri//T1.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --conformed_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --brainmask_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/mask.mgz --aseg_name /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto_noCCseg.mgz --sid subjectx_3 --seg_log /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/deep-seg.log --vox_size min --batch_size 1 --viewagg_device auto --device auto --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+run_fastsurfer.sh terminated via signal at Mon, 17 Jun 2024 13:08:51 -0400!

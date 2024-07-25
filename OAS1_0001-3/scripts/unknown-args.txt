@@ -1,0 +1,7 @@
+-subject
+OAS1_0001-3
+-segstats
+-threads
+4
+-itkthreads
+4

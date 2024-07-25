@@ -1,0 +1,14 @@
+mri_convert /Volumes/drive/disc1/OAS1_0003_MR1/mri/T1.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/orig.mgz 
+reading from /Volumes/drive/disc1/OAS1_0003_MR1/mri/T1.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/orig.mgz...
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/aparc.DKTatlas+aseg.deep.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/aparc.DKTatlas+aseg.orig.mgz 
+reading from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/aparc.DKTatlas+aseg.deep.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS_0003-1/mri/aparc.DKTatlas+aseg.orig.mgz...

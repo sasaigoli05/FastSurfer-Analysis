@@ -1,0 +1,81 @@
+Log file for recon-surf.sh
+Fri May 31 15:43:17 EDT 2024
+
+export SUBJECTS_DIR=/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/Fastsurfer/recon_surf
+./recon-surf.sh --sid testy2 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --t1 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz --threads 4 --py python3.10 -s --parallel --3T
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_X86_64 x86_64
+ 
+================== Checking validity of inputs =================================
+ 
+ 
+ RUNNING both hemis in PARALLEL 
+ RUNNING 4 number of OMP THREADS 
+ RUNNING 4 number of ITK THREADS 
+ 
+Checking Input Segmentation Quality ...
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/Fastsurfer/FastSurferCNN/quick_qc.py --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz
+Reading in aparc+aseg: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz ...
+Estimating ventricle-background intersection volume...
+Ventricle-background intersection volume in mm3: 6.13
+Checking total volume ...
+Voxel size in mm3: 0.6814720034599304
+Total segmentation volume in liter: 1.11
+
+ 
+================== Creating orig and rawavg from input =========================
+ 
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/Fastsurfer/recon_surf/../FastSurferCNN/data_loader/conform.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz --check_only --vox_size min --verbose
+Reading input: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz ...
+A min-conformed image must satisfy the following criteria:
+ - Number of Dimensions 3        : True
+ - Dimensions 256x256x256        : True
+ - Voxel Size 0.88x0.88x0.88     : True
+ - Orientation LIA               : True
+ - Dtype uint8                   : True
+Input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz is already conformed! Exiting.
+
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/Fastsurfer/recon_surf/../FastSurferCNN/data_loader/conform.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz --check_only --vox_size 0.88 --dtype any --verbose
+Reading input: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz ...
+A 0.88-conformed image must satisfy the following criteria:
+ - Number of Dimensions 3        : True
+ - Dimensions 256x256x256        : True
+ - Voxel Size 0.88x0.88x0.88     : True
+ - Orientation LIA               : True
+Input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz is already conformed! Exiting.
+
+The voxel size 0.88 is less than 0.999, so we are proceeding with hires options.
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz 
+reading from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/orig.mgz...
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.orig.mgz
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.orig.mgz 
+reading from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.deep.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri/aparc.DKTatlas+aseg.orig.mgz...
+ln -sf orig.mgz rawavg.mgz
+ 
+============= Computing Talairach Transform and NU (bias corrected) ============
+ 
+"/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/Fastsurfer/recon_surf//talairach-reg.sh" "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/mri" "true" "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/testy2/scripts/recon-surf.log"
+ 
+============ Creating brainmask from aseg and norm, and update aseg ============
+ 
+mri_convert //mri/orig.mgz
+mri_convert //mri/orig.mgz 
+
+mri_convert: missing output volume name
+
+type mri_convert -u for usage
+

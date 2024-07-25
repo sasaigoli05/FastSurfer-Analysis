@@ -1,0 +1,13 @@
+------------------------------
+SUBJECT OAS1_0001
+START_TIME Mon Jun 17 14:39:15 EDT 2024
+END_TIME Mon Jun 17 14:41:32 EDT 2024
+RUNTIME_HOURS 0.038
+USER suhanasaigoli
+HOST suhans-mbp-2.wireless-1x.unc.edu
+PROCESSOR x86_64
+OS Darwin
+UNAME Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+VERSION 7.4.1 (freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460)
+CMDPATH /Applications/freesurfer/7.4.1/bin/recon-all
+CMDARGS -subject OAS1_0001 -segstats -threads 4 -itkthreads 4

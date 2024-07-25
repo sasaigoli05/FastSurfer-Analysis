@@ -1,0 +1,43 @@
+Log file for defect2seg
+Sat Jun 29 17:51:48 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/scripts
+/Applications/freesurfer/7.4.1/bin/defect2seg --s OAS1_0001-3 --rh-only --cortex
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+defect2seg 7.4.1
+Darwin Suhans-MacBook-Pro-2.local 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 86104
+mri_label2label --label-cortex /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/aseg.presurf.mgz 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/label/rh.nofix.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+6 non-cortical segments detected
+only using segment with 6952 vertices
+erasing segment 1 (vno[0] = 63992)
+erasing segment 2 (vno[0] = 73295)
+erasing segment 3 (vno[0] = 77111)
+erasing segment 4 (vno[0] = 78643)
+erasing segment 5 (vno[0] = 81815)
+mri_label2vol --defects /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.defect_labels /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/orig.mgz 2000 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/rh.surface.defects.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/label/rh.nofix.cortex.label
+ supposed to be reproducible but seed not set
+Contraining to label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/label/rh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=2000, merge=0
+Writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/mri/rh.surface.defects.mgz
+mris_defects_pointset -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.orig.nofix -d /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.defect_labels -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.defects.pointset --label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/label/rh.nofix.cortex.label
+Reading in surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.orig.nofix
+Reading in defect segmentation /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/surf/rh.defect_labels
+Reading in label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/OAS1_0001-3/label/rh.nofix.cortex.label
+#VMPC# mris_defects_pointset 0
+mris_defects_pointset done
+ 
+Started at Sat Jun 29 17:51:48 EDT 2024 
+Ended   at Sat Jun 29 17:52:05 EDT 2024
+Defect2seg-Run-Time-Sec 17
+Defect2seg-Run-Time-Min 0.34
+Defect2seg-Run-Time-Hours 0.00
+ 
+defect2seg Done

@@ -1,0 +1,3 @@
+./run_fastsurfer.sh --t1 /Users/suhanasaigoli/Downloads/MD5E-s6217734--309bfd7c87b68e0dd999b20784fbb872.nii.gz --sid testy2 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --parallel --threads 4 --3T
+Fri, 31 May 2024 15:26:02 -0400
+2.3.0-dev+92e6653

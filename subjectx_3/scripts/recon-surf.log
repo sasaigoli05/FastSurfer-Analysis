@@ -1,0 +1,2654 @@
+Log file for recon-surf.sh
+Fri Jun 14 15:38:52 EDT 2024
+
+export SUBJECTS_DIR=/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+./recon-surf.sh --sid subjectx_3 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --t1 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --threads 4 --py python3.10 -s --parallel --3T
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+ 
+================== Checking validity of inputs =================================
+ 
+ 
+ RUNNING both hemis in PARALLEL 
+ RUNNING 4 number of OMP THREADS 
+ RUNNING 4 number of ITK THREADS 
+ 
+Checking Input Segmentation Quality ...
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/FastSurferCNN/quick_qc.py --asegdkt_segfile /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz
+Reading in aparc+aseg: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz ...
+Estimating ventricle-background intersection volume...
+Ventricle-background intersection volume in mm3: 8.00
+Checking total volume ...
+Voxel size in mm3: 1.0
+Total segmentation volume in liter: 1.24
+
+ 
+================== Creating orig and rawavg from input =========================
+ 
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/../FastSurferCNN/data_loader/conform.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --check_only --vox_size min --verbose
+Reading input: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz ...
+A min-conformed image must satisfy the following criteria:
+ - Number of Dimensions 3        : True
+ - Dimensions 256x256x256        : True
+ - Voxel Size 1.0x1.0x1.0        : True
+ - Orientation LIA               : True
+ - Dtype uint8                   : True
+Input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz is already conformed! Exiting.
+
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/../FastSurferCNN/data_loader/conform.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz --check_only --vox_size 1.0 --dtype any --verbose
+Reading input: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz ...
+A conformed image must satisfy the following criteria:
+ - Number of Dimensions 3        : True
+ - Dimensions 256x256x256        : True
+ - Voxel Size 1.0x1.0x1.0        : True
+ - Orientation LIA               : True
+Input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz is already conformed! Exiting.
+
+The voxel size 1.0 is not less than 0.999, so we are proceeding with standard options.
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz 
+reading from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz...
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.orig.mgz
+mri_convert /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.orig.mgz 
+reading from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.orig.mgz...
+ln -sf orig.mgz rawavg.mgz
+ 
+============= Computing Talairach Transform and NU (bias corrected) ============
+ 
+"/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf//talairach-reg.sh" "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri" "true" "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-surf.log"
+talairach_avi --i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig_nu.mgz --xfm /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.auto.xfm --atlas 3T18yoSchwartzReactN32_as_orig
+mv -f /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/talsrcimg_to_3T18yoSchwartzReactN32_as_orig_t4_vox2vox.txt /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talsrcimg_to_3T18yoSchwartzReactN32_as_orig_t4_vox2vox.txt
+Started at Fri Jun 14 15:38:56 EDT 2024
+Ended   at Fri Jun 14 15:39:14 EDT 2024
+talairach_avi done
+cp /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.auto.xfm /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm
+lta_convert --src /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz --trg /Applications/freesurfer/7.4.1/average/mni305.cor.mgz --inxfm /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm --outlta /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.4.1
+
+--src: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz src image (geometry).
+--trg: /Applications/freesurfer/7.4.1/average/mni305.cor.mgz trg image (geometry).
+--inmni: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm input MNI/XFM transform.
+--outlta: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.11619  -0.02623   0.03979  -5.88209;
+ 0.03814   0.93298   0.14080  -22.79424;
+-0.04628  -0.10843   1.10574  -3.24562;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm.lta...
+lta_convert successful.
+ln -sf talairach.xfm.lta talairach_with_skull.lta
+ln -sf talairach.xfm.lta talairach.lta
+mri_add_xform_to_header -c /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/talairach.xfm /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig_nu.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/nu.mgz
+INFO: extension is mgz
+ 
+============ Creating brainmask from aseg and norm, and update aseg ============
+ 
+mri_mask /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/nu.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/mask.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/norm.mgz
+DoAbs = 0
+maskval=0, outval=0
+Writing masked volume to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/norm.mgz...done.
+mri_normalize -g 1 -seed 1234 -mprage /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/nu.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/T1.mgz
+using max gradient = 1.000
+setting seed for random number genererator to 1234
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+reading mri_src from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/nu.mgz...
+normalizing image...
+NOT doing gentle normalization with control points/label
+talairach transform
+ 1.11619  -0.02623   0.03979  -5.88209;
+ 0.03814   0.93298   0.14080  -22.79424;
+-0.04628  -0.10843   1.10574  -3.24562;
+ 0.00000   0.00000   0.00000   1.00000;
+processing without aseg, no1d=0
+MRInormInit(): 
+INFO: Modifying talairach volume c_(r,a,s) based on average_305
+MRInormalize(): 
+MRIsplineNormalize(): npeaks = 22
+Starting OpenSpline(): npoints = 22
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 78 (75), valley at 55 (52)
+csf peak at 38, setting threshold to 64
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 78 (76), valley at 53 (51)
+csf peak at 38, setting threshold to 64
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/T1.mgz
+3D bias adjustment took 1 minutes and 27 seconds.
+mri_mask /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/T1.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/mask.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/brainmask.mgz
+DoAbs = 0
+maskval=0, outval=0
+Writing masked volume to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/brainmask.mgz...done.
+mri_cc -aseg aseg.auto_noCCseg.mgz -o aseg.auto.mgz -lta /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/cc_up.lta subjectx_3
+will read input aseg from aseg.auto_noCCseg.mgz
+writing aseg with cc labels to aseg.auto.mgz
+will write lta as /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms/cc_up.lta
+reading aseg from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto_noCCseg.mgz
+reading norm from /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/norm.mgz
+18625 voxels in left wm, 80899 in right wm, xrange [120, 131]
+searching rotation angles z=[-10  4], y=[-6  8]
+searching scale 1 Z rot -10.1  searching scale 1 Z rot -9.8  searching scale 1 Z rot -9.6  searching scale 1 Z rot -9.3  searching scale 1 Z rot -9.1  searching scale 1 Z rot -8.8  searching scale 1 Z rot -8.6  searching scale 1 Z rot -8.3  searching scale 1 Z rot -8.1  searching scale 1 Z rot -7.8  searching scale 1 Z rot -7.6  searching scale 1 Z rot -7.3  searching scale 1 Z rot -7.1  searching scale 1 Z rot -6.8  searching scale 1 Z rot -6.6  searching scale 1 Z rot -6.3  searching scale 1 Z rot -6.1  searching scale 1 Z rot -5.8  searching scale 1 Z rot -5.6  searching scale 1 Z rot -5.3  searching scale 1 Z rot -5.1  searching scale 1 Z rot -4.8  searching scale 1 Z rot -4.6  searching scale 1 Z rot -4.3  searching scale 1 Z rot -4.1  searching scale 1 Z rot -3.8  searching scale 1 Z rot -3.6  searching scale 1 Z rot -3.3  searching scale 1 Z rot -3.1  searching scale 1 Z rot -2.8  searching scale 1 Z rot -2.6  searching scale 1 Z rot -2.3  searching scale 1 Z rot -2.1  searching scale 1 Z rot -1.8  searching scale 1 Z rot -1.6  searching scale 1 Z rot -1.3  searching scale 1 Z rot -1.1  searching scale 1 Z rot -0.8  searching scale 1 Z rot -0.6  searching scale 1 Z rot -0.3  searching scale 1 Z rot -0.1  searching scale 1 Z rot 0.2  searching scale 1 Z rot 0.4  searching scale 1 Z rot 0.7  searching scale 1 Z rot 0.9  searching scale 1 Z rot 1.2  searching scale 1 Z rot 1.4  searching scale 1 Z rot 1.7  searching scale 1 Z rot 1.9  searching scale 1 Z rot 2.2  searching scale 1 Z rot 2.4  searching scale 1 Z rot 2.7  searching scale 1 Z rot 2.9  searching scale 1 Z rot 3.2  searching scale 1 Z rot 3.4  searching scale 1 Z rot 3.7  global minimum found at slice 128.3, rotations (0.68, -3.07)
+final transformation (x=128.3, yr=0.682, zr=-3.073):
+ 0.99849   0.05361   0.01189  -7.06044;
+-0.05361   0.99856  -0.00064   33.10404;
+-0.01191   0.00000   0.99993   7.53655;
+ 0.00000   0.00000   0.00000   1.00000;
+updating x range to be [126, 131] in xformed coordinates
+best xformed slice 128
+min_x_fornix = 127
+min_x_fornix = 132
+min_x_fornix = 101
+min_x_fornix = 138
+min_x_fornix = 133
+cc center is found at 128 102 122
+eigenvectors:
+ 0.00082  -0.00233   1.00000;
+-0.00946  -0.99995  -0.00233;
+ 0.99995  -0.00946  -0.00084;
+writing aseg with callosum to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto.mgz...
+corpus callosum segmentation took 0.4 minutes
+#VMPC# mri_cc VmPeak  0
+mri_cc done
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/paint_cc_into_pred.py -in_cc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto.mgz -in_pred /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz -out /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.withCC.mgz
+Reading inputs: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.auto.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.mgz...
+Writing segmentation with corpus callosum to: /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.deep.withCC.mgz
+ 
+========= Creating filled from brain (brainfinalsurfs, wm.asegedit, wm)  =======
+ 
+recon-all -s subjectx_3 -asegmerge -normalization2 -maskbfs -segmentation -fill -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.5QY3tk
+Fri Jun 14 15:41:12 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.5QY3tk
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 39593
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+Subject does not have a bstampfile, copying /Applications/freesurfer/7.4.1/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------
+#@# Merge ASeg Fri Jun 14 15:41:23 EDT 2024
+\n cp aseg.auto.mgz aseg.presurf.mgz \n
+#--------------------------------------------
+#@# Intensity Normalization2 Fri Jun 14 15:41:23 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+\n mri_normalize -seed 1234 -mprage -aseg aseg.presurf.mgz -mask brainmask.mgz norm.mgz brain.mgz \n
+setting seed for random number genererator to 1234
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+using segmentation for initial intensity normalization
+using MR volume brainmask.mgz to mask input volume...
+reading mri_src from norm.mgz...
+Reading aseg aseg.presurf.mgz
+aseg read with width 256 (src width 256)
+************** resampling aseg to account for mismatch with source image ***************
+normalizing image...
+NOT doing gentle normalization with control points/label
+processing with aseg
+removing outliers in the aseg WM...
+72 control points removed
+Building bias image
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 0...
+Smoothing with sigma 8
+Applying bias correction
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 86 (86), valley at 56 (56)
+csf peak at 43, setting threshold to 71
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 85 (85), valley at 54 (54)
+csf peak at 43, setting threshold to 71
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to brain.mgz
+3D bias adjustment took 2 minutes and 1 seconds.
+#--------------------------------------------
+#@# Mask BFS Fri Jun 14 15:43:28 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+\n mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz \n
+threshold mask volume at 5
+DoAbs = 0
+Found 1497111 voxels in mask (pct=  8.92)
+maskval=0, outval=0
+Writing masked volume to brain.finalsurfs.mgz...done.
+cp brain.finalsurfs.mgz brain.finalsurfs.manedit.mgz
+#--------------------------------------------
+#@# WM Segmentation Fri Jun 14 15:43:29 EDT 2024
+\n AntsDenoiseImageFs -i brain.mgz -o antsdn.brain.mgz \n
+\n mri_segment -wsizemm 13 -mprage antsdn.brain.mgz wm.seg.mgz \n
+wsizemm = 13, voxres = 1, wsize = 13
+Widening wm low from 89 to 79
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+wm mean:  110
+wsize:    13
+wm low:   79
+wm hi:    125
+gray low: 30
+gray hi:  99
+Doing initial trinary intensity segmentation 
+MRIintensitySegmentation() wm_low=79, wm_hi=125, gray_hi=99
+white = 538075, nonwhite = 15704323, ambig = 534818, nmask = 0
+Using local statistics to label ambiguous voxels
+Autodetecting stats
+Computing class statistics for intensity windows...
+CCS WM (103.0): 103.4 +- 4.5 [79.0 --> 125.0]
+CCS GM (84.0) : 81.8 +- 10.4 [30.0 --> 95.0]
+ white_mean 103.384
+ white_sigma 4.47657
+ gray_mean 81.8376
+ gray_sigma 10.4352
+setting bottom of white matter range wm_low to 92.3
+setting top of gray matter range gray_hi to 102.7
+ wm_low 92.2728
+ wm_hi  125
+ gray_low 30
+ gray_hi  102.708
+Redoing initial intensity segmentation...
+MRIintensitySegmentation() wm_low=92.2728, wm_hi=125, gray_hi=102.708
+white = 475393, nonwhite = 16084865, ambig = 216958, nmask = 0
+Recomputing local statistics to label ambiguous voxels...
+ wm_low 92.2728
+ wm_hi  125
+ gray_low 30
+ gray_hi  102.708
+using local geometry to label remaining ambiguous voxels...
+polvwsize = 5, polvlen = 3, gray_hi = 102.708, wm_low = 92.2728
+MRIcpolvMedianCurveSegment(): wsize=5, len=3, gmhi=102.708, wmlow=92.2728
+    155377 voxels processed (0.93%)
+     75732 voxels white (0.45%)
+     79645 voxels non-white (0.47%)
+
+Reclassifying voxels using Gaussian border classifier niter=1
+MRIreclassify(): wm_low=87.2728, gray_hi=102.708, wsize=13
+    346746 voxels tested (2.07%)
+     54021 voxels changed (0.32%)
+     49167 multi-scale searches  (0.29%)
+Recovering bright white
+MRIrecoverBrightWhite()
+ wm_low 92.2728
+ wm_hi 125
+ slack 4.47657
+ pct_thresh 0.33
+ intensity_thresh 129.477
+ nvox_thresh 8.58
+       35 voxels tested (0.00%)
+       16 voxels changed (0.00%)
+
+removing voxels with positive offset direction...
+MRIremoveWrongDirection() wsize=3, lowthr=87.2728, hithr=102.708
+  smoothing input volume with sigma = 0.250
+   144208 voxels tested (0.86%)
+    16009 voxels changed (0.10%)
+thicken = 1
+removing 1-dimensional structures...
+MRIremove1dStructures(): max_iter=10000, thresh=2, WM_MIN_VAL=5
+ 1705 sparsely connected voxels removed in 1 iterations
+thickening thin strands....
+thickness 4
+nsegments 20
+wm_hi 125
+1509 diagonally connected voxels added...
+MRIthickenThinWMStrands(): thickness=4, nsegments=20
+  20 segments, 3593 filled
+MRIfindBrightNonWM(): 237 bright non-wm voxels segmented.
+MRIfilterMorphology() WM_MIN_VAL=5, DIAGONAL_FILL=230
+white matter segmentation took 1.0 minutes
+writing output to wm.seg.mgz...
+\n mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz \n
+mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz 
+preserving editing changes in input volume...
+auto filling took 0.35 minutes
+reading wm segmentation from wm.seg.mgz...
+56 voxels added to wm to prevent paths from MTL structures to cortex
+4080 additional wm voxels added
+0 additional wm voxels added
+SEG EDIT: 44249 voxels turned on, 57342 voxels turned off.
+propagating editing to output volume from wm.seg.mgz
+writing edited volume to wm.asegedit.mgz....
+\n mri_pretess wm.asegedit.mgz wm norm.mgz wm.mgz \n
+
+Iteration Number : 1
+pass   1 (xy+):  13 found -  13 modified     |    TOTAL:  13
+pass   2 (xy+):   0 found -  13 modified     |    TOTAL:  13
+pass   1 (xy-):   8 found -   8 modified     |    TOTAL:  21
+pass   2 (xy-):   0 found -   8 modified     |    TOTAL:  21
+pass   1 (yz+):  17 found -  17 modified     |    TOTAL:  38
+pass   2 (yz+):   0 found -  17 modified     |    TOTAL:  38
+pass   1 (yz-):  26 found -  26 modified     |    TOTAL:  64
+pass   2 (yz-):   0 found -  26 modified     |    TOTAL:  64
+pass   1 (xz+):   7 found -   7 modified     |    TOTAL:  71
+pass   2 (xz+):   0 found -   7 modified     |    TOTAL:  71
+pass   1 (xz-):   8 found -   8 modified     |    TOTAL:  79
+pass   2 (xz-):   0 found -   8 modified     |    TOTAL:  79
+Iteration Number : 1
+pass   1 (+++):   6 found -   6 modified     |    TOTAL:   6
+pass   2 (+++):   0 found -   6 modified     |    TOTAL:   6
+pass   1 (+++):   4 found -   4 modified     |    TOTAL:  10
+pass   2 (+++):   0 found -   4 modified     |    TOTAL:  10
+pass   1 (+++):   4 found -   4 modified     |    TOTAL:  14
+pass   2 (+++):   0 found -   4 modified     |    TOTAL:  14
+pass   1 (+++):  12 found -  12 modified     |    TOTAL:  26
+pass   2 (+++):   0 found -  12 modified     |    TOTAL:  26
+Iteration Number : 1
+pass   1 (++):  29 found -  29 modified     |    TOTAL:  29
+pass   2 (++):   0 found -  29 modified     |    TOTAL:  29
+pass   1 (+-):  42 found -  42 modified     |    TOTAL:  71
+pass   2 (+-):   0 found -  42 modified     |    TOTAL:  71
+pass   1 (--):  24 found -  24 modified     |    TOTAL:  95
+pass   2 (--):   0 found -  24 modified     |    TOTAL:  95
+pass   1 (-+):  28 found -  28 modified     |    TOTAL: 123
+pass   2 (-+):   0 found -  28 modified     |    TOTAL: 123
+Iteration Number : 2
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (yz+):   2 found -   2 modified     |    TOTAL:   3
+pass   2 (yz+):   0 found -   2 modified     |    TOTAL:   3
+pass   1 (yz-):   2 found -   2 modified     |    TOTAL:   5
+pass   2 (yz-):   0 found -   2 modified     |    TOTAL:   5
+pass   1 (xz+):   1 found -   1 modified     |    TOTAL:   6
+pass   2 (xz+):   0 found -   1 modified     |    TOTAL:   6
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   6
+Iteration Number : 2
+pass   1 (+++):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (+++):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (-+):   0 found -   1 modified     |    TOTAL:   1
+Iteration Number : 3
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 237 (out of 583381: 0.040625)
+binarizing input wm segmentation...
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+#--------------------------------------------
+#@# Fill Fri Jun 14 15:45:21 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+\n mri_fill -a ../scripts/ponscc.cut.log -xform transforms/talairach.lta -segmentation aseg.presurf.mgz -ctab /Applications/freesurfer/7.4.1/SubCorticalMassLUT.txt wm.mgz filled.mgz \n
+logging cutting plane coordinates to ../scripts/ponscc.cut.log...
+INFO: Using transforms/talairach.lta and its offset for Talairach volume ...
+using segmentation aseg.presurf.mgz...
+done.
+searching for cutting planes...voxel to talairach voxel transform
+ 1.11619   0.03979   0.02623  -22.99451;
+-0.04628   1.10574   0.10843  -16.04195;
+-0.03814  -0.14080   0.93298   25.68857;
+ 0.00000   0.00000   0.00000   1.00000;
+reading input volume... wm.mgzvoxel to talairach voxel transform
+ 1.11619   0.03979   0.02623  -22.99451;
+-0.04628   1.10574   0.10843  -16.04195;
+-0.03814  -0.14080   0.93298   25.68857;
+ 0.00000   0.00000   0.00000   1.00000;
+reading segmented volume aseg.presurf.mgz
+removing CC from segmentation
+Looking for area (min, max) = (350, 1400)
+area[0] = 1366 (min = 350, max = 1400), aspect = 0.51 (min = 0.10, max = 0.75)
+no need to search
+using seed (127, 116, 91), TAL = (1.0, -37.0, 12.0)
+talairach voxel to voxel transform
+ 0.89374  -0.03484  -0.02108   20.53366;
+ 0.03333   0.88989  -0.10435   17.72266;
+ 0.04157   0.13287   1.05522  -24.01967;
+ 0.00000   0.00000   0.00000   1.00000;
+segmentation indicates cc at (127,  116,  91) --> (1.0, -37.0, 12.0)
+done.
+filling took 1.0 minutes
+talairach cc position changed to (1.00, -37.00, 12.00)
+Erasing brainstem...done.
+seed_search_size = 9, min_neighbors = 5
+search rh wm seed point around talairach space:(19.00, -37.00, 12.00) SRC: (111.99, 115.09, 91.95)
+search lh wm seed point around talairach space (-17.00, -37.00, 12.00), SRC: (144.17, 116.29, 93.45)
+compute mri_fill using aseg
+Erasing Brain Stem and Cerebellum ...
+Define left and right masks using aseg:
+Building Voronoi diagram ...
+Using the Voronoi diagram for separating WM into two hemispheres ...
+Find the largest connected component for each hemisphere ...
+Embedding colortable
+mri_fill done, writing output to filled.mgz...
+ cp filled.mgz filled.auto.mgz
+
+Started at Fri Jun 14 15:41:12 EDT 2024 
+Ended   at Fri Jun 14 15:46:20 EDT 2024
+#@#%# recon-all-run-time-hours 0.086
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:21 EDT 2024
+done
+ 
+ RUNNING HEMIs in PARALLEL !!! 
+ 
+
+ /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/lh.processing.cmdf
+
+
+================== Creating surfaces lh - orig.nofix ==================
+
+mri_pretess /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled.mgz 255 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/brain.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess255.mgz
+
+Iteration Number : 1
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (xy-):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (yz+):   8 found -   8 modified     |    TOTAL:  10
+pass   2 (yz+):   0 found -   8 modified     |    TOTAL:  10
+pass   1 (yz-):   6 found -   6 modified     |    TOTAL:  16
+pass   2 (yz-):   0 found -   6 modified     |    TOTAL:  16
+pass   1 (xz+):   3 found -   3 modified     |    TOTAL:  19
+pass   2 (xz+):   0 found -   3 modified     |    TOTAL:  19
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:  19
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (+-):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   1
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 20 (out of 280115: 0.007140)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+mri_mc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess255.mgz 255 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix
+
+preprocessing...done
+starting generation of surface...
+   slice nb 30...
+   slice nb 40...
+   slice nb 50...
+   slice nb 60...
+   slice nb 70...
+   slice nb 80...
+   slice nb 90...
+   slice nb 100...
+   slice nb 110...
+   slice nb 120...
+   slice nb 130...
+   slice nb 140...
+   slice nb 150...
+   slice nb 160...
+   slice nb 170...
+   slice nb 180...
+   slice nb 190...
+   slice nb 200...
+constructing final surface...
+(surface with 261268 faces and 130594 vertices)...done
+computing the maximum edge length...1.414214 mm
+reversing orientation of faces...
+checking orientation of surface...
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+
+counting number of connected components...
+   130594 voxel in cpt #1: X=-40 [v=130594,e=391902,f=261268] located at (-26.438229, -19.505054, 15.410149)
+For the whole surface: X=-40 [v=130594,e=391902,f=261268]
+One single component has been found
+nothing to do
+writing out surface...done
+mris_info /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix | tr -s ' ' | grep -q 'vertex locs : surfaceRAS'
+volume geometry:
+extent  : (256, 256, 256)
+voxel   : ( 1.0000,  1.0000,  1.0000)
+x_(ras) : (-1.0000, -0.0000,  0.0000)
+y_(ras) : (-0.0000,  0.0000, -1.0000)
+z_(ras) : (-0.0000,  1.0000,  0.0000)
+c_(ras) : ( 5.3997, 18.0000,  0.0000)
+file    : /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess255.mgz
+mris_extract_main_component /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix
+
+counting number of connected components...
+   130594 voxel in cpt #1: X=-40 [v=130594,e=391902,f=261268] located at (-26.438229, -19.505054, 15.410149)
+For the whole surface: X=-40 [v=130594,e=391902,f=261268]
+One single component has been found
+nothing to do
+done
+
+mris_smooth -n 10 -nw -seed 1234 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.smoothwm.nofix
+smoothing for 10 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+
+=================== Creating surfaces lh - qsphere ====================
+
+recon-all -subject subjectx_3 -hemi lh -inflate1 -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.gdUfdZ
+Fri Jun 14 15:46:31 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.gdUfdZ
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 40590
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+mv: rename /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.env to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.env.bak: No such file or directory
+-rw-rw-r--  1 suhanasaigoli  staff  42173 Jun 14 15:46 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# Inflation1 lh Fri Jun 14 15:46:34 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_inflate -no-save-sulc ../surf/lh.smoothwm.nofix ../surf/lh.inflated.nofix \n
+Not saving sulc
+Reading ../surf/lh.smoothwm.nofix
+avg radius = 48.5 mm, total surface area = 70701 mm^2
+step 000: RMS=0.142 (target=0.015)   step 005: RMS=0.108 (target=0.015)   step 010: RMS=0.080 (target=0.015)   step 015: RMS=0.065 (target=0.015)   step 020: RMS=0.056 (target=0.015)   step 025: RMS=0.049 (target=0.015)   step 030: RMS=0.043 (target=0.015)   step 035: RMS=0.039 (target=0.015)   step 040: RMS=0.036 (target=0.015)   step 045: RMS=0.033 (target=0.015)   step 050: RMS=0.032 (target=0.015)   step 055: RMS=0.031 (target=0.015)   step 060: RMS=0.031 (target=0.015)   writing inflated surface to ../surf/lh.inflated.nofix
+inflation took 0.4 minutes
+
+inflation complete.
+Not saving sulc
+mris_inflate utimesec    20.114484
+mris_inflate stimesec    1.344555
+mris_inflate ru_maxrss   231100416
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   703084
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    0
+mris_inflate ru_nivcsw   8838
+
+Started at Fri Jun 14 15:46:31 EDT 2024 
+Ended   at Fri Jun 14 15:46:55 EDT 2024
+#@#%# recon-all-run-time-hours 0.007
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:56 EDT 2024
+done
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project_wrapper.py --hemi lh --sdir /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf --subject subjectx_3 --threads=4 --py 'python3.10 -s' --binpath /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/
+Running command: python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.smoothwm.nofix -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.qsphere.nofix
+stderr
+Traceback (most recent call last):
+  File "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py", line 22, in <module>
+    from lapy.diffgeo import tria_mean_curvature_flow
+ModuleNotFoundError: No module named 'lapy'
+
+Command python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.smoothwm.nofix -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.qsphere.nofix failed.
+Running fallback command: recon-all -s subjectx_3 -hemi lh -qsphere -no-isrunning -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.Yd7t5n
+Fri Jun 14 15:46:56 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.Yd7t5n
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 41130
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  105137 Jun 14 15:46 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# QSphere lh Fri Jun 14 15:46:59 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_sphere -q -p 6 -a 128 -seed 1234 ../surf/lh.inflated.nofix ../surf/lh.qsphere.nofix \n
+doing quick spherical unfolding.
+limitting unfolding to 6 passes
+using n_averages = 128
+setting seed for random number genererator to 1234
+version: 7.4.1
+scaling brain by 0.296...
+inflating...
+projecting onto sphere...
+surface projected - minimizing metric distortion...
+vertex spacing 0.99 +- 0.58 (0.00-->6.66) (max @ vno 48054 --> 49026)
+face area 0.02 +- 0.03 (-0.06-->0.60)
+Entering MRISinflateToSphere()
+inflating to sphere (rms error < 2.00)
+000: dt: 0.0000, rms radial error=177.692, avgs=0
+005/300: dt: 0.9000, rms radial error=177.432, avgs=0
+010/300: dt: 0.9000, rms radial error=176.873, avgs=0
+015/300: dt: 0.9000, rms radial error=176.139, avgs=0
+020/300: dt: 0.9000, rms radial error=175.303, avgs=0
+025/300: dt: 0.9000, rms radial error=174.408, avgs=0
+030/300: dt: 0.9000, rms radial error=173.480, avgs=0
+035/300: dt: 0.9000, rms radial error=172.536, avgs=0
+040/300: dt: 0.9000, rms radial error=171.583, avgs=0
+045/300: dt: 0.9000, rms radial error=170.628, avgs=0
+050/300: dt: 0.9000, rms radial error=169.674, avgs=0
+055/300: dt: 0.9000, rms radial error=168.722, avgs=0
+060/300: dt: 0.9000, rms radial error=167.774, avgs=0
+065/300: dt: 0.9000, rms radial error=166.831, avgs=0
+070/300: dt: 0.9000, rms radial error=165.892, avgs=0
+075/300: dt: 0.9000, rms radial error=164.958, avgs=0
+080/300: dt: 0.9000, rms radial error=164.029, avgs=0
+085/300: dt: 0.9000, rms radial error=163.106, avgs=0
+090/300: dt: 0.9000, rms radial error=162.188, avgs=0
+095/300: dt: 0.9000, rms radial error=161.275, avgs=0
+100/300: dt: 0.9000, rms radial error=160.367, avgs=0
+105/300: dt: 0.9000, rms radial error=159.463, avgs=0
+110/300: dt: 0.9000, rms radial error=158.565, avgs=0
+115/300: dt: 0.9000, rms radial error=157.672, avgs=0
+120/300: dt: 0.9000, rms radial error=156.785, avgs=0
+125/300: dt: 0.9000, rms radial error=155.905, avgs=0
+130/300: dt: 0.9000, rms radial error=155.031, avgs=0
+135/300: dt: 0.9000, rms radial error=154.161, avgs=0
+140/300: dt: 0.9000, rms radial error=153.297, avgs=0
+145/300: dt: 0.9000, rms radial error=152.437, avgs=0
+150/300: dt: 0.9000, rms radial error=151.582, avgs=0
+155/300: dt: 0.9000, rms radial error=150.732, avgs=0
+160/300: dt: 0.9000, rms radial error=149.886, avgs=0
+165/300: dt: 0.9000, rms radial error=149.045, avgs=0
+170/300: dt: 0.9000, rms radial error=148.209, avgs=0
+175/300: dt: 0.9000, rms radial error=147.377, avgs=0
+180/300: dt: 0.9000, rms radial error=146.550, avgs=0
+185/300: dt: 0.9000, rms radial error=145.727, avgs=0
+190/300: dt: 0.9000, rms radial error=144.908, avgs=0
+195/300: dt: 0.9000, rms radial error=144.094, avgs=0
+200/300: dt: 0.9000, rms radial error=143.285, avgs=0
+205/300: dt: 0.9000, rms radial error=142.480, avgs=0
+210/300: dt: 0.9000, rms radial error=141.679, avgs=0
+215/300: dt: 0.9000, rms radial error=140.883, avgs=0
+220/300: dt: 0.9000, rms radial error=140.091, avgs=0
+225/300: dt: 0.9000, rms radial error=139.304, avgs=0
+230/300: dt: 0.9000, rms radial error=138.521, avgs=0
+235/300: dt: 0.9000, rms radial error=137.742, avgs=0
+240/300: dt: 0.9000, rms radial error=136.968, avgs=0
+245/300: dt: 0.9000, rms radial error=136.197, avgs=0
+250/300: dt: 0.9000, rms radial error=135.431, avgs=0
+255/300: dt: 0.9000, rms radial error=134.670, avgs=0
+260/300: dt: 0.9000, rms radial error=133.912, avgs=0
+265/300: dt: 0.9000, rms radial error=133.159, avgs=0
+270/300: dt: 0.9000, rms radial error=132.410, avgs=0
+275/300: dt: 0.9000, rms radial error=131.665, avgs=0
+280/300: dt: 0.9000, rms radial error=130.924, avgs=0
+285/300: dt: 0.9000, rms radial error=130.188, avgs=0
+290/300: dt: 0.9000, rms radial error=129.455, avgs=0
+295/300: dt: 0.9000, rms radial error=128.727, avgs=0
+300/300: dt: 0.9000, rms radial error=128.002, avgs=0
+
+spherical inflation complete.
+epoch 1 (K=10.0), pass 1, starting sse = 15452.52
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/13 = 0.00032
+epoch 2 (K=40.0), pass 1, starting sse = 2589.74
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.01/13 = 0.00040
+epoch 3 (K=160.0), pass 1, starting sse = 249.97
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.17/18 = 0.00933
+epoch 4 (K=640.0), pass 1, starting sse = 8.15
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.31/35 = 0.00899
+final distance error %100000.00
+writing spherical brain to ../surf/lh.qsphere.nofix
+spherical transformation took 0.0485 hours
+FSRUNTIME@ mris_sphere  0.0485 hours 1 threads
+#VMPC# mris_sphere VmPeak  0
+mris_sphere done
+
+Started at Fri Jun 14 15:46:57 EDT 2024 
+Ended   at Fri Jun 14 15:49:53 EDT 2024
+#@#%# recon-all-run-time-hours 0.049
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:49:53 EDT 2024
+done
+
+stderr
+mv: rename /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.env to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.env.bak: No such file or directory
+
+
+=================== Creating surfaces lh - fix ========================
+
+recon-all -subject subjectx_3 -hemi lh -fix -autodetgwstats -white-preaparc -cortex-label -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.CGL0wJ
+Fri Jun 14 15:49:54 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.CGL0wJ
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 41714
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  170717 Jun 14 15:49 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#@# Fix Topology lh Fri Jun 14 15:49:56 EDT 2024
+\n mris_fix_topology -mgz -sphere qsphere.nofix -inflated inflated.nofix -orig orig.nofix -out orig.premesh -ga -seed 1234 subjectx_3 lh \n
+reading spherical homeomorphism from 'qsphere.nofix'
+reading inflated coordinates from 'inflated.nofix'
+reading original coordinates from 'orig.nofix'
+using genetic algorithm with optimized parameters
+setting seed for random number genererator to 1234
+
+*************************************************************
+Topology Correction Parameters
+retessellation mode:           genetic search
+number of patches/generation : 10
+number of generations :        10
+surface mri loglikelihood coefficient :         1.0
+volume mri loglikelihood coefficient :          10.0
+normal dot loglikelihood coefficient :          1.0
+quadratic curvature loglikelihood coefficient : 1.0
+volume resolution :                             2
+eliminate vertices during search :              1
+initial patch selection :                       1
+select all defect vertices :                    0
+ordering dependant retessellation:              0
+use precomputed edge table :                    0
+smooth retessellated patch :                    2
+match retessellated patch :                     1
+verbose mode :                                  0
+
+*************************************************************
+INFO: assuming .mgz format
+writing corrected surface to 'orig.premesh'
+7.4.1
+  7.4.1
+before topology correction, eno=-40 (nv=130594, nf=261268, ne=391902, g=21)
+using quasi-homeomorphic spherical map to tessellate cortical surface...
+
+Correction of the Topology
+Finding true center and radius of Spherical Surface...done
+Surface centered at (0,0,0) with radius 100.0 in 9 iterations
+marking ambiguous vertices...
+2095 ambiguous faces found in tessellation
+segmenting defects...
+23 defects found, arbitrating ambiguous regions...
+analyzing neighboring defects...
+23 defects to be corrected 
+0 vertices coincident
+reading input surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.qsphere.nofix...
+reading brain volume from brain...
+reading wm segmentation from wm...
+Reading original properties of orig.nofix
+Reading vertex positions of inflated.nofix
+Computing Initial Surface Statistics
+      -face       loglikelihood: -8.6522  (-4.3261)
+      -vertex     loglikelihood: -5.6145  (-2.8072)
+      -normal dot loglikelihood: -3.7321  (-3.7321)
+      -quad curv  loglikelihood: -5.6809  (-2.8405)
+      Total Loglikelihood : -23.6798
+CORRECTING DEFECT 0 (vertices=35, convex hull=51, v0=3008)
+After retessellation of defect 0 (v0=3008), euler #=-20 (129257,387128,257851) : difference with theory (-20) = 0 
+CORRECTING DEFECT 1 (vertices=61, convex hull=96, v0=16103)
+After retessellation of defect 1 (v0=16103), euler #=-19 (129277,387232,257936) : difference with theory (-19) = 0 
+CORRECTING DEFECT 2 (vertices=44, convex hull=74, v0=19906)
+After retessellation of defect 2 (v0=19906), euler #=-18 (129286,387290,257986) : difference with theory (-18) = 0 
+CORRECTING DEFECT 3 (vertices=19, convex hull=55, v0=25756)
+After retessellation of defect 3 (v0=25756), euler #=-17 (129291,387323,258015) : difference with theory (-17) = 0 
+CORRECTING DEFECT 4 (vertices=99, convex hull=58, v0=53171)
+After retessellation of defect 4 (v0=53171), euler #=-16 (129297,387366,258053) : difference with theory (-16) = 0 
+CORRECTING DEFECT 5 (vertices=51, convex hull=89, v0=71571)
+After retessellation of defect 5 (v0=71571), euler #=-15 (129310,387445,258120) : difference with theory (-15) = 0 
+CORRECTING DEFECT 6 (vertices=40, convex hull=65, v0=81729)
+After retessellation of defect 6 (v0=81729), euler #=-14 (129324,387511,258173) : difference with theory (-14) = 0 
+CORRECTING DEFECT 7 (vertices=32, convex hull=68, v0=84763)
+After retessellation of defect 7 (v0=84763), euler #=-13 (129333,387565,258219) : difference with theory (-13) = 0 
+CORRECTING DEFECT 8 (vertices=25, convex hull=64, v0=86064)
+After retessellation of defect 8 (v0=86064), euler #=-12 (129342,387614,258260) : difference with theory (-12) = 0 
+CORRECTING DEFECT 9 (vertices=13, convex hull=23, v0=86539)
+After retessellation of defect 9 (v0=86539), euler #=-11 (129344,387626,258271) : difference with theory (-11) = 0 
+CORRECTING DEFECT 10 (vertices=43, convex hull=59, v0=87827)
+After retessellation of defect 10 (v0=87827), euler #=-10 (129349,387667,258308) : difference with theory (-10) = 0 
+CORRECTING DEFECT 11 (vertices=64, convex hull=88, v0=91377)
+After retessellation of defect 11 (v0=91377), euler #=-9 (129367,387758,258382) : difference with theory (-9) = 0 
+CORRECTING DEFECT 12 (vertices=35, convex hull=23, v0=93141)
+After retessellation of defect 12 (v0=93141), euler #=-8 (129371,387775,258396) : difference with theory (-8) = 0 
+CORRECTING DEFECT 13 (vertices=62, convex hull=59, v0=93326)
+After retessellation of defect 13 (v0=93326), euler #=-7 (129383,387834,258444) : difference with theory (-7) = 0 
+CORRECTING DEFECT 14 (vertices=18, convex hull=58, v0=96130)
+After retessellation of defect 14 (v0=96130), euler #=-6 (129388,387870,258476) : difference with theory (-6) = 0 
+CORRECTING DEFECT 15 (vertices=30, convex hull=69, v0=101592)
+After retessellation of defect 15 (v0=101592), euler #=-5 (129395,387919,258519) : difference with theory (-5) = 0 
+CORRECTING DEFECT 16 (vertices=86, convex hull=99, v0=103768)
+After retessellation of defect 16 (v0=103768), euler #=-4 (129424,388051,258623) : difference with theory (-4) = 0 
+CORRECTING DEFECT 17 (vertices=32, convex hull=74, v0=106195)
+After retessellation of defect 17 (v0=106195), euler #=-3 (129434,388110,258673) : difference with theory (-3) = 0 
+CORRECTING DEFECT 18 (vertices=34, convex hull=35, v0=108675)
+After retessellation of defect 18 (v0=108675), euler #=-2 (129438,388133,258693) : difference with theory (-2) = 0 
+CORRECTING DEFECT 19 (vertices=410, convex hull=234, v0=109973)
+After retessellation of defect 19 (v0=109973), euler #=-1 (129479,388371,258891) : difference with theory (-1) = 0 
+CORRECTING DEFECT 20 (vertices=70, convex hull=62, v0=117968)
+After retessellation of defect 20 (v0=117968), euler #=0 (129488,388423,258935) : difference with theory (0) = 0 
+CORRECTING DEFECT 21 (vertices=9, convex hull=32, v0=120974)
+After retessellation of defect 21 (v0=120974), euler #=1 (129489,388436,258948) : difference with theory (1) = 0 
+CORRECTING DEFECT 22 (vertices=37, convex hull=58, v0=123894)
+After retessellation of defect 22 (v0=123894), euler #=2 (129498,388488,258992) : difference with theory (2) = 0 
+computing original vertex metric properties...
+storing new metric properties...
+computing tessellation statistics...
+vertex spacing 0.88 +- 0.21 (0.14-->5.39) (max @ vno 122590 --> 124076)
+face area nan +- nan (1000.00-->-1.00)
+performing soap bubble on retessellated vertices for 0 iterations...
+vertex spacing 0.88 +- 0.21 (0.14-->5.39) (max @ vno 122590 --> 124076)
+face area nan +- nan (1000.00-->-1.00)
+tessellation finished, orienting corrected surface...
+92 mutations (35.2%), 169 crossovers (64.8%), 49 vertices were eliminated
+building final representation...
+1096 vertices and 0 faces have been removed from triangulation
+after topology correction, eno=2 (nv=129498, nf=258992, ne=388488, g=0)
+writing corrected surface to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.premesh...
+
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+removing intersecting faces
+000: 88 intersecting
+001: 2 intersecting
+terminating search with 0 intersecting
+topology fixing took 1.8 minutes
+FSRUNTIME@ mris_fix_topology lh  0.0303 hours 1 threads
+#VMPC# mris_fix_topology VmPeak  0
+\n mris_euler_number ../surf/lh.orig.premesh \n
+euler # = v-e+f = 2g-2: 129498 - 388488 + 258992 = 2 --> 0 holes
+      F =2V-4:          258992 = 258996-4 (0)
+      2E=3F:            776976 = 776976 (0)
+
+total defect index = 0
+Fri Jun 14 15:51:46 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+/Applications/freesurfer/7.4.1/bin/defect2seg --s subjectx_3 --lh-only --cortex
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+defect2seg 7.4.1
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 42515
+mri_label2label --label-cortex /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.presurf.mgz 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.nofix.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+8 non-cortical segments detected
+only using segment with 8260 vertices
+erasing segment 1 (vno[0] = 80714)
+erasing segment 2 (vno[0] = 93141)
+erasing segment 3 (vno[0] = 93234)
+erasing segment 4 (vno[0] = 93309)
+erasing segment 5 (vno[0] = 94222)
+erasing segment 6 (vno[0] = 94246)
+erasing segment 7 (vno[0] = 96832)
+mri_label2vol --defects /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.defect_labels /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz 1000 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/lh.surface.defects.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.nofix.cortex.label
+ supposed to be reproducible but seed not set
+Contraining to label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=1000, merge=0
+Writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/lh.surface.defects.mgz
+mris_defects_pointset -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix -d /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.defect_labels -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.defects.pointset --label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.nofix.cortex.label
+Reading in surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.nofix
+Reading in defect segmentation /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.defect_labels
+Reading in label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.nofix.cortex.label
+#VMPC# mris_defects_pointset 0
+mris_defects_pointset done
+ 
+Started at Fri Jun 14 15:51:46 EDT 2024 
+Ended   at Fri Jun 14 15:52:10 EDT 2024
+Defect2seg-Run-Time-Sec 24
+Defect2seg-Run-Time-Min 0.48
+Defect2seg-Run-Time-Hours 0.01
+ 
+tkmeditfv subjectx_3 brain.finalsurfs.mgz -defect
+defect2seg Done
+\n mris_remesh --remesh --iters 3 --input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig.premesh --output /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.orig \n
+iters = 3
+standard remeshing without target
+   adjusted l: 0.703689
+remeshing to edge length 0.703689 with 3 iterations
+
+avg qual before   : 0.901099  after: 0.96997
+
+Removing intersections
+Remeshed surface quality stats nv0 = 129498  nv = 136348  1.0529
+Area    272692  0.29748  0.03405 0.070182   0.4697
+Corner  818076 60.00000  8.99452 14.432544 149.7152
+Edge    409038  0.83706  0.08343 0.462941   1.2427
+Hinge   409038  8.61765  9.04714 0.000016 131.1593
+mris_remesh done
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_remove_intersection ../surf/lh.orig ../surf/lh.orig \n
+intersection removal took 0.00 hours
+Found 0 intersections
+writing corrected surface to ../surf/lh.orig
+\n rm -f ../surf/lh.inflated \n
+#--------------------------------------------
+#@# AutoDetGWStats lh Fri Jun 14 15:52:39 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.lh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/lh.orig.premesh
+7.4.1
+
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.lh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/lh.orig.premesh 
+
+border white:    246322 voxels (1.47%)
+border gray      266752 voxels (1.59%)
+Reading in intensity volume brain.finalsurfs.mgz
+Reading in wm volume wm.mgz
+Reading in surf ../surf/lh.orig.premesh
+Auto detecting stats
+MRIclipBrightWM(): nthresh=20668, wmmin=5, clip=110 
+Binarizing thresholding at 5
+computing class statistics... low=30, hi=110.000000
+CCS WM (104.0): 103.5 +- 5.5 [70.0 --> 110.0]
+CCS GM (87.0) : 86.3 +- 9.0 [30.0 --> 110.0]
+white_mean = 103.464 +/- 5.53336, gray_mean = 86.2853 +/- 9.04997
+using class modes intead of means, discounting robust sigmas....
+MRIScomputeClassModes(): min=0 max=199 nbins=200
+intensity peaks found at WM=106+-3.5,    GM=82+-7.8
+white_mode = 106, gray_mode = 82
+std_scale = 1
+Applying sanity checks, max_scale_down = 0.2
+setting MIN_GRAY_AT_WHITE_BORDER to 73.0 (was 70.000000)
+setting MAX_BORDER_WHITE to 111.5 (was 105.000000)
+setting MIN_BORDER_WHITE to 82.0 (was 85.000000)
+setting MAX_CSF to 63.9 (was 40.000000)
+setting MAX_GRAY to 100.5 (was 95.000000)
+setting MAX_GRAY_AT_CSF_BORDER to 73.0 (was 75.000000)
+setting MIN_GRAY_AT_CSF_BORDER to 54.9 (was 40.000000)
+When placing the white surface
+  white_border_hi   = 111.533;
+  white_border_low  = 82;
+  white_outside_low = 72.95;
+  white_inside_hi   = 120;
+  white_outside_hi  = 111.533;
+When placing the pial surface
+  pial_border_hi   = 72.95;
+  pial_border_low  = 54.8501;
+  pial_outside_low = 10;
+  pial_inside_hi   = 100.467;
+  pial_outside_hi  = 68.425;
+#VMPC# mris_autodet_gwstats VmPeak  0
+mris_autodet_gwstats done
+#--------------------------------------------
+#@# WhitePreAparc lh Fri Jun 14 15:52:43 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.lh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --lh --i ../surf/lh.orig --o ../surf/lh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5
+7.4.1
+7.4.1
+
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.lh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --lh --i ../surf/lh.orig --o ../surf/lh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5 
+
+Reading in input surface ../surf/lh.orig
+Smoothing surface before ripping with 5 iterations
+Area    272692  0.26614  0.06115 0.008924   0.5581
+Corner  818076 60.00000  9.38288 15.553624 139.4194
+Edge    409038  0.78795  0.11129 0.081606   1.2828
+Hinge   409038  6.15865  6.06526 0.000008 130.7111
+Not reading in aparc
+Reading in input volume brain.finalsurfs.mgz
+Reading in seg volume aseg.presurf.mgz
+Reading in wm volume wm.mgz
+MRIclipBrightWM(): nthresh=20668, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 333 bright non-wm voxels segmented.
+Masking bright non-wm for white surface
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=0
+#FML# MRISripMidline(): nmarked=6919, nmarked2=0, nripped=6919
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 68174: xyz = (-25.7053,-8.30514,42.2066) oxyz = (-25.7053,-8.30514,42.2066) wxzy = (-25.7053,-8.30514,42.2066) pxyz = (0,0,0) 
+CBVO Creating mask 136348
+n_averages 4
+Iteration 0 =========================================
+n_averages=4, current_sigma=2
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6919
+#FML# MRISripMidline(): nmarked=6919, nmarked2=0, nripped=6919
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  82.0000000;
+  outside_low =  72.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136348
+  Gdiag_no=-1
+  vno start=0, stop=136348
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 119 vertices, nripped=6919
+mean border=90.3, 76 (76) missing vertices, mean dist 0.5 [0.7 (%29.9)->1.0 (%70.1))]
+%62 local maxima, %33 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.2165 min
+
+
+Finding expansion regions
+mean absolute distance = 0.92 +- 1.10
+4818 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=suhan, nav=4, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 0
+
+000: dt: 0.0000, sse=1823642.2, rms=8.049
+001: dt: 0.5000, sse=1082310.2, rms=6.020 (25.214%)
+002: dt: 0.5000, sse=687098.5, rms=4.572 (24.055%)
+003: dt: 0.5000, sse=466549.0, rms=3.524 (22.908%)
+004: dt: 0.5000, sse=345757.9, rms=2.777 (21.200%)
+005: dt: 0.5000, sse=281076.0, rms=2.274 (18.126%)
+006: dt: 0.5000, sse=248097.0, rms=1.958 (13.868%)
+007: dt: 0.5000, sse=231632.1, rms=1.773 (9.481%)
+008: dt: 0.5000, sse=222592.4, rms=1.657 (6.529%)
+009: dt: 0.5000, sse=218468.1, rms=1.605 (3.161%)
+rms = 1.5679/1.6047, sse=216838.8/218468.1, time step reduction 1 of 3 to 0.250  0 0 1
+010: dt: 0.5000, sse=216838.8, rms=1.568 (2.293%)
+011: dt: 0.2500, sse=188994.4, rms=1.144 (27.017%)
+012: dt: 0.2500, sse=186335.6, rms=1.092 (4.593%)
+rms = 1.0767/1.0917, sse=185452.9/186335.6, time step reduction 2 of 3 to 0.125  0 0 1
+013: dt: 0.2500, sse=185452.9, rms=1.077 (1.372%)
+rms = 1.0669/1.0767, sse=184827.6/185452.9, time step reduction 3 of 3 to 0.062  0 0 1
+014: dt: 0.1250, sse=184827.5, rms=1.067 (0.913%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.2 minutes
+  done positioning surface
+Iteration 1 =========================================
+n_averages=2, current_sigma=1
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6919
+removing 4 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7139, nmarked2=0, nripped=7139
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  82.0000000;
+  outside_low =  72.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136348
+  Gdiag_no=-1
+  vno start=0, stop=136348
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 66 vertices, nripped=7139
+mean border=92.7, 44 (2) missing vertices, mean dist -0.3 [0.6 (%72.2)->0.3 (%27.8))]
+%74 local maxima, %21 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.1350 min
+
+
+Finding expansion regions
+mean absolute distance = 0.47 +- 0.72
+4897 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=suhan, nav=2, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=575974.5, rms=3.783
+015: dt: 0.5000, sse=349536.4, rms=2.360 (37.607%)
+016: dt: 0.5000, sse=280338.2, rms=1.729 (26.747%)
+017: dt: 0.5000, sse=263822.2, rms=1.424 (17.622%)
+018: dt: 0.5000, sse=244819.3, rms=1.271 (10.754%)
+019: dt: 0.5000, sse=242811.0, rms=1.220 (4.001%)
+rms = 1.1908/1.2204, sse=240081.8/242810.9, time step reduction 1 of 3 to 0.250  0 0 1
+020: dt: 0.5000, sse=240081.8, rms=1.191 (2.422%)
+021: dt: 0.2500, sse=224778.5, rms=0.883 (25.822%)
+rms = 0.8419/0.8833, sse=223128.5/224778.5, time step reduction 2 of 3 to 0.125  0 0 1
+022: dt: 0.2500, sse=223128.5, rms=0.842 (4.689%)
+rms = 0.8330/0.8419, sse=222506.0/223128.5, time step reduction 3 of 3 to 0.062  0 0 1
+023: dt: 0.1250, sse=222506.0, rms=0.833 (1.057%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.7 minutes
+  done positioning surface
+Iteration 2 =========================================
+n_averages=1, current_sigma=0.5
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7139
+removing 4 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7180, nmarked2=0, nripped=7180
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  82.0000000;
+  outside_low =  72.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136348
+  Gdiag_no=-1
+  vno start=0, stop=136348
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 107 vertices, nripped=7180
+mean border=94.6, 38 (0) missing vertices, mean dist -0.2 [0.4 (%73.2)->0.2 (%26.8))]
+%85 local maxima, %10 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0754 min
+
+
+Finding expansion regions
+mean absolute distance = 0.33 +- 0.45
+4969 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=suhan, nav=1, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=395252.5, rms=2.775
+024: dt: 0.5000, sse=253367.0, rms=1.476 (46.814%)
+025: dt: 0.5000, sse=226612.6, rms=1.078 (26.955%)
+026: dt: 0.5000, sse=223145.7, rms=1.004 (6.840%)
+rms = 0.9942/1.0044, sse=221789.2/223145.7, time step reduction 1 of 3 to 0.250  0 0 1
+027: dt: 0.5000, sse=221789.2, rms=0.994 (1.010%)
+028: dt: 0.2500, sse=212864.3, rms=0.787 (20.796%)
+rms = 0.7656/0.7875, sse=211952.8/212864.3, time step reduction 2 of 3 to 0.125  0 0 1
+029: dt: 0.2500, sse=211952.8, rms=0.766 (2.769%)
+rms = 0.7564/0.7656, sse=211619.6/211952.8, time step reduction 3 of 3 to 0.062  0 0 1
+030: dt: 0.1250, sse=211619.6, rms=0.756 (1.207%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.6 minutes
+  done positioning surface
+Iteration 3 =========================================
+n_averages=0, current_sigma=0.25
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7180
+removing 2 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7183, nmarked2=0, nripped=7183
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  82.0000000;
+  outside_low =  72.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136348
+  Gdiag_no=-1
+  vno start=0, stop=136348
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 125 vertices, nripped=7183
+mean border=95.3, 44 (0) missing vertices, mean dist -0.1 [0.3 (%58.7)->0.2 (%41.3))]
+%88 local maxima, % 6 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0491 min
+
+
+Finding expansion regions
+mean absolute distance = 0.25 +- 0.35
+3476 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=suhan, nav=0, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=231373.8, rms=1.227
+031: dt: 0.5000, sse=207686.9, rms=0.729 (40.600%)
+rms = 0.8132/0.7291, sse=209833.0/207686.9, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+032: dt: 0.2500, sse=203592.2, rms=0.637 (12.613%)
+rms = 0.6317/0.6371, sse=203403.8/203592.2, time step reduction 2 of 3 to 0.125  0 0 1
+033: dt: 0.2500, sse=203403.8, rms=0.632 (0.849%)
+rms = 0.6157/0.6317, sse=202514.4/203403.8, time step reduction 3 of 3 to 0.062  0 0 1
+034: dt: 0.1250, sse=202514.4, rms=0.616 (2.543%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.5 minutes
+  done positioning surface
+Removing intersections
+#ET# mris_place_surface  3.57 minutes
+
+
+Writing output to ../surf/lh.white.preaparc
+#VMPC# mris_place_surfaces VmPeak  0
+mris_place_surface done
+#--------------------------------------------
+#@# CortexLabel lh Fri Jun 14 15:56:24 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mri_label2label --label-cortex ../surf/lh.white.preaparc aseg.presurf.mgz 0 ../label/lh.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+4 non-cortical segments detected
+only using segment with 9036 vertices
+erasing segment 0 (vno[0] = 26274)
+erasing segment 2 (vno[0] = 80651)
+erasing segment 3 (vno[0] = 81487)
+#--------------------------------------------
+#@# CortexLabel+HipAmyg lh Fri Jun 14 15:56:44 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mri_label2label --label-cortex ../surf/lh.white.preaparc aseg.presurf.mgz 1 ../label/lh.cortex+hipamyg.label
+
+ Generating cortex label... RemoveHipAmgy=1
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+8 non-cortical segments detected
+only using segment with 6808 vertices
+erasing segment 0 (vno[0] = 26274)
+erasing segment 2 (vno[0] = 45619)
+erasing segment 3 (vno[0] = 45689)
+erasing segment 4 (vno[0] = 48483)
+erasing segment 5 (vno[0] = 51022)
+erasing segment 6 (vno[0] = 80651)
+erasing segment 7 (vno[0] = 81487)
+
+Started at Fri Jun 14 15:49:54 EDT 2024 
+Ended   at Fri Jun 14 15:57:03 EDT 2024
+#@#%# recon-all-run-time-hours 0.119
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:57:03 EDT 2024
+done
+ 
+================== Creating surfaces lh - inflate2 ====================
+ 
+recon-all -subject subjectx_3 -hemi lh -smooth2 -inflate2 -curvHK -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.ANMAHD
+Fri Jun 14 15:57:03 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.ANMAHD
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 43449
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  325374 Jun 14 15:57 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# Smooth2 lh Fri Jun 14 15:57:05 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_smooth -n 3 -nw -seed 1234 ../surf/lh.white.preaparc ../surf/lh.smoothwm \n
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation2 lh Fri Jun 14 15:57:08 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_inflate ../surf/lh.smoothwm ../surf/lh.inflated \n
+Reading ../surf/lh.smoothwm
+avg radius = 48.4 mm, total surface area = 82829 mm^2
+step 000: RMS=0.163 (target=0.015)   step 005: RMS=0.110 (target=0.015)   step 010: RMS=0.082 (target=0.015)   step 015: RMS=0.066 (target=0.015)   step 020: RMS=0.055 (target=0.015)   step 025: RMS=0.046 (target=0.015)   step 030: RMS=0.037 (target=0.015)   step 035: RMS=0.031 (target=0.015)   step 040: RMS=0.026 (target=0.015)   step 045: RMS=0.023 (target=0.015)   step 050: RMS=0.021 (target=0.015)   step 055: RMS=0.019 (target=0.015)   step 060: RMS=0.018 (target=0.015)   writing inflated surface to ../surf/lh.inflated
+writing sulcal depths to ../surf/lh.sulc
+
+inflation complete.
+inflation took 0.4 minutes
+mris_inflate utimesec    21.507853
+mris_inflate stimesec    1.342909
+mris_inflate ru_maxrss   237133824
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   741585
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    23
+mris_inflate ru_nivcsw   8165
+#--------------------------------------------
+#@# Curv .H and .K lh Fri Jun 14 15:57:32 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf
+\n mris_curvature -w -seed 1234 lh.white.preaparc \n
+setting seed for random number generator to 1234
+total integrated curvature = 20.723*4pi (260.409) --> -20 handles
+ICI = 141.3, FI = 1283.4, variation=20564.783
+writing Gaussian curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.white.preaparc.K...done.
+writing mean curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.white.preaparc.H...mris_curvature done.
+rm -f lh.white.H
+ln -s lh.white.preaparc.H lh.white.H
+rm -f lh.white.K
+ln -s lh.white.preaparc.K lh.white.K
+\n mris_curvature -seed 1234 -thresh .999 -n -a 5 -w -distances 10 10 lh.inflated \n
+setting seed for random number generator to 1234
+normalizing curvature values.
+averaging curvature patterns 5 times.
+sampling 10 neighbors out to a distance of 10 mm
+253 vertices thresholded to be in k1 ~ [-0.15 0.33], k2 ~ [-0.09 0.06]
+total integrated curvature = 0.688*4pi (8.647) --> 0 handles
+ICI = 1.6, FI = 8.9, variation=157.847
+132 vertices thresholded to be in [-0.01 0.01]
+writing Gaussian curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.inflated.K...thresholding curvature at 99.90% level
+curvature mean = 0.000, std = 0.001
+161 vertices thresholded to be in [-0.11 0.17]
+done.
+writing mean curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.inflated.H...curvature mean = -0.016, std = 0.022
+mris_curvature done.
+
+Started at Fri Jun 14 15:57:03 EDT 2024 
+Ended   at Fri Jun 14 15:58:07 EDT 2024
+#@#%# recon-all-run-time-hours 0.018
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:58:07 EDT 2024
+done
+ 
+=========== Creating surfaces lh - map input asegdkt_segfile to surf ===============
+ 
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py --inseg /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.orig.mgz --insurf /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/lh.white.preaparc --incort /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.cortex.label --outaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/lh.aparc.DKTatlas.mapped.annot --seglut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/lh.DKTatlaslookup.txt --surflut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/DKTatlaslookup.txt --projmm 0.6 --radius 2
+Traceback (most recent call last):
+  File "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py", line 28, in <module>
+    from lapy import TriaMesh
+ModuleNotFoundError: No module named 'lapy'
+
+ /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/rh.processing.cmdf
+
+
+================== Creating surfaces rh - orig.nofix ==================
+
+mri_pretess /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/brain.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess127.mgz
+
+Iteration Number : 1
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (yz+):  11 found -  11 modified     |    TOTAL:  12
+pass   2 (yz+):   0 found -  11 modified     |    TOTAL:  12
+pass   1 (yz-):  10 found -  10 modified     |    TOTAL:  22
+pass   2 (yz-):   0 found -  10 modified     |    TOTAL:  22
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:  24
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:  24
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:  24
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (-+):   0 found -   1 modified     |    TOTAL:   1
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 25 (out of 280228: 0.008921)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+mri_mc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess127.mgz 127 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix
+
+preprocessing...done
+starting generation of surface...
+   slice nb 30...
+   slice nb 40...
+   slice nb 50...
+   slice nb 60...
+   slice nb 70...
+   slice nb 80...
+   slice nb 90...
+   slice nb 100...
+   slice nb 110...
+   slice nb 120...
+   slice nb 130...
+   slice nb 140...
+   slice nb 150...
+   slice nb 160...
+   slice nb 170...
+   slice nb 180...
+   slice nb 190...
+   slice nb 200...
+constructing final surface...
+(surface with 260572 faces and 130260 vertices)...done
+computing the maximum edge length...1.414214 mm
+reversing orientation of faces...
+checking orientation of surface...
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+
+counting number of connected components...
+   130260 voxel in cpt #1: X=-26 [v=130260,e=390858,f=260572] located at (26.035559, -20.209949, 18.247965)
+For the whole surface: X=-26 [v=130260,e=390858,f=260572]
+One single component has been found
+nothing to do
+writing out surface...done
+mris_info /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix | tr -s ' ' | grep -q 'vertex locs : surfaceRAS'
+volume geometry:
+extent  : (256, 256, 256)
+voxel   : ( 1.0000,  1.0000,  1.0000)
+x_(ras) : (-1.0000, -0.0000,  0.0000)
+y_(ras) : (-0.0000,  0.0000, -1.0000)
+z_(ras) : (-0.0000,  1.0000,  0.0000)
+c_(ras) : ( 5.3997, 18.0000,  0.0000)
+file    : /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/filled-pretess127.mgz
+mris_extract_main_component /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix
+
+counting number of connected components...
+   130260 voxel in cpt #1: X=-26 [v=130260,e=390858,f=260572] located at (26.035559, -20.209949, 18.247965)
+For the whole surface: X=-26 [v=130260,e=390858,f=260572]
+One single component has been found
+nothing to do
+done
+
+mris_smooth -n 10 -nw -seed 1234 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.smoothwm.nofix
+smoothing for 10 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+
+=================== Creating surfaces rh - qsphere ====================
+
+recon-all -subject subjectx_3 -hemi rh -inflate1 -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.6HyhEA
+Fri Jun 14 15:46:31 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.6HyhEA
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 40589
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  42173 Jun 14 15:46 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# Inflation1 rh Fri Jun 14 15:46:34 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_inflate -no-save-sulc ../surf/rh.smoothwm.nofix ../surf/rh.inflated.nofix \n
+Not saving sulc
+Reading ../surf/rh.smoothwm.nofix
+avg radius = 48.7 mm, total surface area = 71028 mm^2
+step 000: RMS=0.139 (target=0.015)   step 005: RMS=0.106 (target=0.015)   step 010: RMS=0.078 (target=0.015)   step 015: RMS=0.064 (target=0.015)   step 020: RMS=0.052 (target=0.015)   step 025: RMS=0.045 (target=0.015)   step 030: RMS=0.040 (target=0.015)   step 035: RMS=0.035 (target=0.015)   step 040: RMS=0.032 (target=0.015)   step 045: RMS=0.030 (target=0.015)   step 050: RMS=0.028 (target=0.015)   step 055: RMS=0.028 (target=0.015)   step 060: RMS=0.028 (target=0.015)   writing inflated surface to ../surf/rh.inflated.nofix
+inflation took 0.4 minutes
+
+inflation complete.
+Not saving sulc
+mris_inflate utimesec    20.059889
+mris_inflate stimesec    1.378864
+mris_inflate ru_maxrss   231120896
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   709693
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    0
+mris_inflate ru_nivcsw   8985
+
+Started at Fri Jun 14 15:46:31 EDT 2024 
+Ended   at Fri Jun 14 15:46:55 EDT 2024
+#@#%# recon-all-run-time-hours 0.007
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:56 EDT 2024
+done
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project_wrapper.py --hemi rh --sdir /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf --subject subjectx_3 --threads=4 --py 'python3.10 -s' --binpath /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/
+Running command: python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.smoothwm.nofix -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.qsphere.nofix
+stderr
+Traceback (most recent call last):
+  File "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py", line 22, in <module>
+    from lapy.diffgeo import tria_mean_curvature_flow
+ModuleNotFoundError: No module named 'lapy'
+
+Command python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/spherically_project.py -i /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.smoothwm.nofix -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.qsphere.nofix failed.
+Running fallback command: recon-all -s subjectx_3 -hemi rh -qsphere -no-isrunning -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.aNAzjv
+Fri Jun 14 15:46:56 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.aNAzjv
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 41129
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  105137 Jun 14 15:46 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# QSphere rh Fri Jun 14 15:46:59 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_sphere -q -p 6 -a 128 -seed 1234 ../surf/rh.inflated.nofix ../surf/rh.qsphere.nofix \n
+doing quick spherical unfolding.
+limitting unfolding to 6 passes
+using n_averages = 128
+setting seed for random number genererator to 1234
+version: 7.4.1
+scaling brain by 0.293...
+inflating...
+projecting onto sphere...
+surface projected - minimizing metric distortion...
+vertex spacing 1.00 +- 0.59 (0.00-->5.97) (max @ vno 55040 --> 55059)
+face area 0.02 +- 0.03 (-0.06-->0.53)
+Entering MRISinflateToSphere()
+inflating to sphere (rms error < 2.00)
+000: dt: 0.0000, rms radial error=177.766, avgs=0
+005/300: dt: 0.9000, rms radial error=177.504, avgs=0
+010/300: dt: 0.9000, rms radial error=176.943, avgs=0
+015/300: dt: 0.9000, rms radial error=176.206, avgs=0
+020/300: dt: 0.9000, rms radial error=175.367, avgs=0
+025/300: dt: 0.9000, rms radial error=174.471, avgs=0
+030/300: dt: 0.9000, rms radial error=173.543, avgs=0
+035/300: dt: 0.9000, rms radial error=172.598, avgs=0
+040/300: dt: 0.9000, rms radial error=171.646, avgs=0
+045/300: dt: 0.9000, rms radial error=170.691, avgs=0
+050/300: dt: 0.9000, rms radial error=169.737, avgs=0
+055/300: dt: 0.9000, rms radial error=168.785, avgs=0
+060/300: dt: 0.9000, rms radial error=167.838, avgs=0
+065/300: dt: 0.9000, rms radial error=166.895, avgs=0
+070/300: dt: 0.9000, rms radial error=165.957, avgs=0
+075/300: dt: 0.9000, rms radial error=165.024, avgs=0
+080/300: dt: 0.9000, rms radial error=164.096, avgs=0
+085/300: dt: 0.9000, rms radial error=163.173, avgs=0
+090/300: dt: 0.9000, rms radial error=162.255, avgs=0
+095/300: dt: 0.9000, rms radial error=161.342, avgs=0
+100/300: dt: 0.9000, rms radial error=160.434, avgs=0
+105/300: dt: 0.9000, rms radial error=159.531, avgs=0
+110/300: dt: 0.9000, rms radial error=158.633, avgs=0
+115/300: dt: 0.9000, rms radial error=157.739, avgs=0
+120/300: dt: 0.9000, rms radial error=156.851, avgs=0
+125/300: dt: 0.9000, rms radial error=155.967, avgs=0
+130/300: dt: 0.9000, rms radial error=155.088, avgs=0
+135/300: dt: 0.9000, rms radial error=154.214, avgs=0
+140/300: dt: 0.9000, rms radial error=153.345, avgs=0
+145/300: dt: 0.9000, rms radial error=152.481, avgs=0
+150/300: dt: 0.9000, rms radial error=151.621, avgs=0
+155/300: dt: 0.9000, rms radial error=150.766, avgs=0
+160/300: dt: 0.9000, rms radial error=149.917, avgs=0
+165/300: dt: 0.9000, rms radial error=149.072, avgs=0
+170/300: dt: 0.9000, rms radial error=148.232, avgs=0
+175/300: dt: 0.9000, rms radial error=147.396, avgs=0
+180/300: dt: 0.9000, rms radial error=146.565, avgs=0
+185/300: dt: 0.9000, rms radial error=145.739, avgs=0
+190/300: dt: 0.9000, rms radial error=144.917, avgs=0
+195/300: dt: 0.9000, rms radial error=144.103, avgs=0
+200/300: dt: 0.9000, rms radial error=143.293, avgs=0
+205/300: dt: 0.9000, rms radial error=142.487, avgs=0
+210/300: dt: 0.9000, rms radial error=141.686, avgs=0
+215/300: dt: 0.9000, rms radial error=140.890, avgs=0
+220/300: dt: 0.9000, rms radial error=140.098, avgs=0
+225/300: dt: 0.9000, rms radial error=139.310, avgs=0
+230/300: dt: 0.9000, rms radial error=138.527, avgs=0
+235/300: dt: 0.9000, rms radial error=137.748, avgs=0
+240/300: dt: 0.9000, rms radial error=136.974, avgs=0
+245/300: dt: 0.9000, rms radial error=136.203, avgs=0
+250/300: dt: 0.9000, rms radial error=135.437, avgs=0
+255/300: dt: 0.9000, rms radial error=134.676, avgs=0
+260/300: dt: 0.9000, rms radial error=133.918, avgs=0
+265/300: dt: 0.9000, rms radial error=133.165, avgs=0
+270/300: dt: 0.9000, rms radial error=132.416, avgs=0
+275/300: dt: 0.9000, rms radial error=131.671, avgs=0
+280/300: dt: 0.9000, rms radial error=130.930, avgs=0
+285/300: dt: 0.9000, rms radial error=130.193, avgs=0
+290/300: dt: 0.9000, rms radial error=129.461, avgs=0
+295/300: dt: 0.9000, rms radial error=128.733, avgs=0
+300/300: dt: 0.9000, rms radial error=128.008, avgs=0
+
+spherical inflation complete.
+epoch 1 (K=10.0), pass 1, starting sse = 15448.70
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.01/13 = 0.00048
+epoch 2 (K=40.0), pass 1, starting sse = 2578.44
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/13 = 0.00037
+epoch 3 (K=160.0), pass 1, starting sse = 253.95
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.18/18 = 0.00996
+epoch 4 (K=640.0), pass 1, starting sse = 7.63
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.41/38 = 0.01073
+final distance error %100000.00
+writing spherical brain to ../surf/rh.qsphere.nofix
+spherical transformation took 0.0495 hours
+FSRUNTIME@ mris_sphere  0.0495 hours 1 threads
+#VMPC# mris_sphere VmPeak  0
+mris_sphere done
+
+Started at Fri Jun 14 15:46:57 EDT 2024 
+Ended   at Fri Jun 14 15:49:57 EDT 2024
+#@#%# recon-all-run-time-hours 0.050
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:49:57 EDT 2024
+done
+
+
+=================== Creating surfaces rh - fix ========================
+
+recon-all -subject subjectx_3 -hemi rh -fix -autodetgwstats -white-preaparc -cortex-label -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.tV2UzV
+Fri Jun 14 15:49:58 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.tV2UzV
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 41985
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  206751 Jun 14 15:49 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#@# Fix Topology rh Fri Jun 14 15:50:00 EDT 2024
+\n mris_fix_topology -mgz -sphere qsphere.nofix -inflated inflated.nofix -orig orig.nofix -out orig.premesh -ga -seed 1234 subjectx_3 rh \n
+reading spherical homeomorphism from 'qsphere.nofix'
+reading inflated coordinates from 'inflated.nofix'
+reading original coordinates from 'orig.nofix'
+using genetic algorithm with optimized parameters
+setting seed for random number genererator to 1234
+
+*************************************************************
+Topology Correction Parameters
+retessellation mode:           genetic search
+number of patches/generation : 10
+number of generations :        10
+surface mri loglikelihood coefficient :         1.0
+volume mri loglikelihood coefficient :          10.0
+normal dot loglikelihood coefficient :          1.0
+quadratic curvature loglikelihood coefficient : 1.0
+volume resolution :                             2
+eliminate vertices during search :              1
+initial patch selection :                       1
+select all defect vertices :                    0
+ordering dependant retessellation:              0
+use precomputed edge table :                    0
+smooth retessellated patch :                    2
+match retessellated patch :                     1
+verbose mode :                                  0
+
+*************************************************************
+INFO: assuming .mgz format
+writing corrected surface to 'orig.premesh'
+7.4.1
+  7.4.1
+before topology correction, eno=-26 (nv=130260, nf=260572, ne=390858, g=14)
+using quasi-homeomorphic spherical map to tessellate cortical surface...
+
+Correction of the Topology
+Finding true center and radius of Spherical Surface...done
+Surface centered at (0,0,0) with radius 100.0 in 9 iterations
+marking ambiguous vertices...
+1070 ambiguous faces found in tessellation
+segmenting defects...
+14 defects found, arbitrating ambiguous regions...
+analyzing neighboring defects...
+14 defects to be corrected 
+0 vertices coincident
+reading input surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.qsphere.nofix...
+reading brain volume from brain...
+reading wm segmentation from wm...
+Reading original properties of orig.nofix
+Reading vertex positions of inflated.nofix
+Computing Initial Surface Statistics
+      -face       loglikelihood: -8.6571  (-4.3285)
+      -vertex     loglikelihood: -5.6009  (-2.8004)
+      -normal dot loglikelihood: -3.7691  (-3.7691)
+      -quad curv  loglikelihood: -5.7360  (-2.8680)
+      Total Loglikelihood : -23.7631
+CORRECTING DEFECT 0 (vertices=39, convex hull=87, v0=2467)
+After retessellation of defect 0 (v0=2467), euler #=-11 (129587,388438,258840) : difference with theory (-11) = 0 
+CORRECTING DEFECT 1 (vertices=28, convex hull=63, v0=4898)
+After retessellation of defect 1 (v0=4898), euler #=-10 (129594,388483,258879) : difference with theory (-10) = 0 
+CORRECTING DEFECT 2 (vertices=68, convex hull=51, v0=53766)
+After retessellation of defect 2 (v0=53766), euler #=-9 (129602,388528,258917) : difference with theory (-9) = 0 
+CORRECTING DEFECT 3 (vertices=24, convex hull=65, v0=72299)
+After retessellation of defect 3 (v0=72299), euler #=-8 (129609,388571,258954) : difference with theory (-8) = 0 
+CORRECTING DEFECT 4 (vertices=75, convex hull=53, v0=85974)
+After retessellation of defect 4 (v0=85974), euler #=-7 (129621,388628,259000) : difference with theory (-7) = 0 
+CORRECTING DEFECT 5 (vertices=42, convex hull=36, v0=92292)
+After retessellation of defect 5 (v0=92292), euler #=-6 (129629,388664,259029) : difference with theory (-6) = 0 
+CORRECTING DEFECT 6 (vertices=58, convex hull=49, v0=94025)
+After retessellation of defect 6 (v0=94025), euler #=-5 (129635,388698,259058) : difference with theory (-5) = 0 
+CORRECTING DEFECT 7 (vertices=108, convex hull=101, v0=107961)
+After retessellation of defect 7 (v0=107961), euler #=-4 (129656,388803,259143) : difference with theory (-4) = 0 
+CORRECTING DEFECT 8 (vertices=22, convex hull=61, v0=115474)
+After retessellation of defect 8 (v0=115474), euler #=-3 (129662,388844,259179) : difference with theory (-3) = 0 
+CORRECTING DEFECT 9 (vertices=37, convex hull=56, v0=117878)
+After retessellation of defect 9 (v0=117878), euler #=-2 (129673,388899,259224) : difference with theory (-2) = 0 
+CORRECTING DEFECT 10 (vertices=67, convex hull=85, v0=119691)
+After retessellation of defect 10 (v0=119691), euler #=-1 (129695,389003,259307) : difference with theory (-1) = 0 
+CORRECTING DEFECT 11 (vertices=24, convex hull=55, v0=124915)
+After retessellation of defect 11 (v0=124915), euler #=0 (129702,389045,259343) : difference with theory (0) = 0 
+CORRECTING DEFECT 12 (vertices=74, convex hull=84, v0=126232)
+After retessellation of defect 12 (v0=126232), euler #=1 (129715,389119,259405) : difference with theory (1) = 0 
+CORRECTING DEFECT 13 (vertices=24, convex hull=59, v0=128801)
+After retessellation of defect 13 (v0=128801), euler #=2 (129721,389157,259438) : difference with theory (2) = 0 
+computing original vertex metric properties...
+storing new metric properties...
+computing tessellation statistics...
+vertex spacing 0.88 +- 0.22 (0.07-->10.48) (max @ vno 107027 --> 113763)
+face area nan +- nan (1000.00-->-1.00)
+performing soap bubble on retessellated vertices for 0 iterations...
+vertex spacing 0.88 +- 0.22 (0.07-->10.48) (max @ vno 107027 --> 113763)
+face area nan +- nan (1000.00-->-1.00)
+tessellation finished, orienting corrected surface...
+51 mutations (36.4%), 89 crossovers (63.6%), 17 vertices were eliminated
+building final representation...
+539 vertices and 0 faces have been removed from triangulation
+after topology correction, eno=2 (nv=129721, nf=259438, ne=389157, g=0)
+writing corrected surface to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.premesh...
+
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+removing intersecting faces
+000: 32 intersecting
+terminating search with 0 intersecting
+topology fixing took 0.8 minutes
+FSRUNTIME@ mris_fix_topology rh  0.0127 hours 1 threads
+#VMPC# mris_fix_topology VmPeak  0
+\n mris_euler_number ../surf/rh.orig.premesh \n
+euler # = v-e+f = 2g-2: 129721 - 389157 + 259438 = 2 --> 0 holes
+      F =2V-4:          259438 = 259442-4 (0)
+      2E=3F:            778314 = 778314 (0)
+
+total defect index = 0
+Fri Jun 14 15:50:46 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+/Applications/freesurfer/7.4.1/bin/defect2seg --s subjectx_3 --rh-only --cortex
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+defect2seg 7.4.1
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 42232
+mri_label2label --label-cortex /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aseg.presurf.mgz 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.nofix.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+5 non-cortical segments detected
+only using segment with 8303 vertices
+erasing segment 1 (vno[0] = 94725)
+erasing segment 2 (vno[0] = 97095)
+erasing segment 3 (vno[0] = 97864)
+erasing segment 4 (vno[0] = 98592)
+mri_label2vol --defects /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.defect_labels /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/orig.mgz 2000 0 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/rh.surface.defects.mgz /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.nofix.cortex.label
+ supposed to be reproducible but seed not set
+Contraining to label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=2000, merge=0
+Writing to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/rh.surface.defects.mgz
+mris_defects_pointset -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix -d /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.defect_labels -o /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.defects.pointset --label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.nofix.cortex.label
+Reading in surface /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.nofix
+Reading in defect segmentation /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.defect_labels
+Reading in label /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.nofix.cortex.label
+#VMPC# mris_defects_pointset 0
+mris_defects_pointset done
+ 
+Started at Fri Jun 14 15:50:46 EDT 2024 
+Ended   at Fri Jun 14 15:51:06 EDT 2024
+Defect2seg-Run-Time-Sec 20
+Defect2seg-Run-Time-Min 0.40
+Defect2seg-Run-Time-Hours 0.01
+ 
+tkmeditfv subjectx_3 brain.finalsurfs.mgz -defect
+defect2seg Done
+\n mris_remesh --remesh --iters 3 --input /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig.premesh --output /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.orig \n
+iters = 3
+standard remeshing without target
+   adjusted l: 0.70375
+remeshing to edge length 0.70375 with 3 iterations
+
+avg qual before   : 0.900813  after: 0.969849
+
+Removing intersections
+Remeshed surface quality stats nv0 = 129721  nv = 136801  1.05458
+Area    273598  0.29724  0.03404 0.067587   0.4680
+Corner  820794 60.00000  9.01301 13.373989 152.1385
+Edge    410397  0.83677  0.08357 0.452365   1.3203
+Hinge   410397  8.50998  8.93415 0.000008 132.5121
+mris_remesh done
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_remove_intersection ../surf/rh.orig ../surf/rh.orig \n
+intersection removal took 0.00 hours
+Found 0 intersections
+writing corrected surface to ../surf/rh.orig
+\n rm -f ../surf/rh.inflated \n
+#--------------------------------------------
+#@# AutoDetGWStats rh Fri Jun 14 15:51:27 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.rh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/rh.orig.premesh
+7.4.1
+
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.rh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/rh.orig.premesh 
+
+border white:    246322 voxels (1.47%)
+border gray      266752 voxels (1.59%)
+Reading in intensity volume brain.finalsurfs.mgz
+Reading in wm volume wm.mgz
+Reading in surf ../surf/rh.orig.premesh
+Auto detecting stats
+MRIclipBrightWM(): nthresh=20668, wmmin=5, clip=110 
+Binarizing thresholding at 5
+computing class statistics... low=30, hi=110.000000
+CCS WM (104.0): 103.5 +- 5.5 [70.0 --> 110.0]
+CCS GM (87.0) : 86.3 +- 9.0 [30.0 --> 110.0]
+white_mean = 103.464 +/- 5.53336, gray_mean = 86.2853 +/- 9.04997
+using class modes intead of means, discounting robust sigmas....
+MRIScomputeClassModes(): min=0 max=199 nbins=200
+intensity peaks found at WM=106+-2.6,    GM=83+-7.0
+white_mode = 106, gray_mode = 83
+std_scale = 1
+Applying sanity checks, max_scale_down = 0.2
+setting MIN_GRAY_AT_WHITE_BORDER to 74.0 (was 70.000000)
+setting MAX_BORDER_WHITE to 111.5 (was 105.000000)
+setting MIN_BORDER_WHITE to 83.0 (was 85.000000)
+setting MAX_CSF to 64.9 (was 40.000000)
+setting MAX_GRAY to 100.5 (was 95.000000)
+setting MAX_GRAY_AT_CSF_BORDER to 74.0 (was 75.000000)
+setting MIN_GRAY_AT_CSF_BORDER to 55.9 (was 40.000000)
+When placing the white surface
+  white_border_hi   = 111.533;
+  white_border_low  = 83;
+  white_outside_low = 73.95;
+  white_inside_hi   = 120;
+  white_outside_hi  = 111.533;
+When placing the pial surface
+  pial_border_hi   = 73.95;
+  pial_border_low  = 55.8501;
+  pial_outside_low = 10;
+  pial_inside_hi   = 100.467;
+  pial_outside_hi  = 69.425;
+#VMPC# mris_autodet_gwstats VmPeak  0
+mris_autodet_gwstats done
+#--------------------------------------------
+#@# WhitePreAparc rh Fri Jun 14 15:51:30 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --rh --i ../surf/rh.orig --o ../surf/rh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5
+7.4.1
+7.4.1
+
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --rh --i ../surf/rh.orig --o ../surf/rh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5 
+
+Reading in input surface ../surf/rh.orig
+Smoothing surface before ripping with 5 iterations
+Area    273598  0.26665  0.06108 0.014447   0.5822
+Corner  820794 60.00000  9.34390 13.616376 138.5675
+Edge    410397  0.78868  0.11096 0.131820   1.3688
+Hinge   410397  6.06915  5.98403 0.000043 111.7972
+Not reading in aparc
+Reading in input volume brain.finalsurfs.mgz
+Reading in seg volume aseg.presurf.mgz
+Reading in wm volume wm.mgz
+MRIclipBrightWM(): nthresh=20668, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 333 bright non-wm voxels segmented.
+Masking bright non-wm for white surface
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=0
+#FML# MRISripMidline(): nmarked=7170, nmarked2=0, nripped=7170
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 68401: xyz = (50.595,-9.66018,-21.0917) oxyz = (50.595,-9.66018,-21.0917) wxzy = (50.595,-9.66018,-21.0917) pxyz = (0,0,0) 
+CBVO Creating mask 136801
+n_averages 4
+Iteration 0 =========================================
+n_averages=4, current_sigma=2
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7170
+#FML# MRISripMidline(): nmarked=7170, nmarked2=0, nripped=7170
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  83.0000000;
+  outside_low =  73.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136801
+  Gdiag_no=-1
+  vno start=0, stop=136801
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 28 vertices, nripped=7170
+mean border=90.6, 17 (17) missing vertices, mean dist 0.5 [0.7 (%29.1)->1.0 (%70.9))]
+%60 local maxima, %35 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.2320 min
+
+
+Finding expansion regions
+mean absolute distance = 0.91 +- 1.07
+5102 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=suhan, nav=4, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 0
+
+000: dt: 0.0000, sse=1795990.9, rms=7.974
+001: dt: 0.5000, sse=1074111.5, rms=5.986 (24.926%)
+002: dt: 0.5000, sse=682368.7, rms=4.554 (23.933%)
+003: dt: 0.5000, sse=463120.3, rms=3.501 (23.128%)
+004: dt: 0.5000, sse=339471.3, rms=2.728 (22.056%)
+005: dt: 0.5000, sse=270559.3, rms=2.177 (20.218%)
+006: dt: 0.5000, sse=234704.0, rms=1.816 (16.576%)
+007: dt: 0.5000, sse=216039.0, rms=1.593 (12.252%)
+008: dt: 0.5000, sse=207934.4, rms=1.479 (7.208%)
+009: dt: 0.5000, sse=203901.5, rms=1.416 (4.250%)
+rms = 1.3931/1.4158, sse=202796.0/203901.5, time step reduction 1 of 3 to 0.250  0 0 1
+010: dt: 0.5000, sse=202796.0, rms=1.393 (1.607%)
+011: dt: 0.2500, sse=178374.9, rms=0.972 (30.244%)
+rms = 0.9260/0.9717, sse=176373.8/178374.9, time step reduction 2 of 3 to 0.125  0 0 1
+012: dt: 0.2500, sse=176373.8, rms=0.926 (4.706%)
+rms = 0.9178/0.9260, sse=176041.1/176373.8, time step reduction 3 of 3 to 0.062  0 0 1
+013: dt: 0.1250, sse=176041.1, rms=0.918 (0.887%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.3 minutes
+  done positioning surface
+Iteration 1 =========================================
+n_averages=2, current_sigma=1
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7170
+removing 3 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7314, nmarked2=0, nripped=7314
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  83.0000000;
+  outside_low =  73.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136801
+  Gdiag_no=-1
+  vno start=0, stop=136801
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 34 vertices, nripped=7314
+mean border=93.1, 23 (2) missing vertices, mean dist -0.3 [0.6 (%72.5)->0.3 (%27.5))]
+%73 local maxima, %21 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.1630 min
+
+
+Finding expansion regions
+mean absolute distance = 0.48 +- 0.73
+4944 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=suhan, nav=2, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=585253.1, rms=3.831
+014: dt: 0.5000, sse=351407.8, rms=2.390 (37.602%)
+015: dt: 0.5000, sse=281367.0, rms=1.744 (27.061%)
+016: dt: 0.5000, sse=254489.5, rms=1.420 (18.567%)
+017: dt: 0.5000, sse=242996.2, rms=1.258 (11.426%)
+018: dt: 0.5000, sse=238380.4, rms=1.181 (6.096%)
+rms = 1.1512/1.1810, sse=236857.0/238380.4, time step reduction 1 of 3 to 0.250  0 0 1
+019: dt: 0.5000, sse=236857.0, rms=1.151 (2.521%)
+020: dt: 0.2500, sse=222889.7, rms=0.856 (25.685%)
+rms = 0.8202/0.8555, sse=221824.3/222889.7, time step reduction 2 of 3 to 0.125  0 0 1
+021: dt: 0.2500, sse=221824.3, rms=0.820 (4.129%)
+rms = 0.8116/0.8202, sse=221615.8/221824.3, time step reduction 3 of 3 to 0.062  0 0 1
+022: dt: 0.1250, sse=221615.8, rms=0.812 (1.051%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.8 minutes
+  done positioning surface
+Iteration 2 =========================================
+n_averages=1, current_sigma=0.5
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7314
+removing 1 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7416, nmarked2=0, nripped=7416
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  83.0000000;
+  outside_low =  73.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136801
+  Gdiag_no=-1
+  vno start=0, stop=136801
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 130 vertices, nripped=7416
+mean border=95.1, 27 (0) missing vertices, mean dist -0.2 [0.4 (%73.6)->0.2 (%26.4))]
+%85 local maxima, %10 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0747 min
+
+
+Finding expansion regions
+mean absolute distance = 0.33 +- 0.45
+5298 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=suhan, nav=1, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=393486.6, rms=2.764
+023: dt: 0.5000, sse=249024.0, rms=1.436 (48.057%)
+024: dt: 0.5000, sse=223525.7, rms=1.044 (27.278%)
+025: dt: 0.5000, sse=219274.3, rms=0.955 (8.500%)
+rms = 0.9522/0.9554, sse=218864.1/219274.3, time step reduction 1 of 3 to 0.250  0 0 1
+026: dt: 0.5000, sse=218864.1, rms=0.952 (0.338%)
+027: dt: 0.2500, sse=210631.4, rms=0.757 (20.482%)
+rms = 0.7406/0.7572, sse=209988.6/210631.4, time step reduction 2 of 3 to 0.125  0 0 1
+028: dt: 0.2500, sse=209988.6, rms=0.741 (2.195%)
+rms = 0.7364/0.7406, sse=209736.4/209988.6, time step reduction 3 of 3 to 0.062  0 0 1
+029: dt: 0.1250, sse=209736.4, rms=0.736 (0.561%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.6 minutes
+  done positioning surface
+Iteration 3 =========================================
+n_averages=0, current_sigma=0.25
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7416
+removing 1 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7425, nmarked2=0, nripped=7425
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 111.5333560;
+  border_low  =  83.0000000;
+  outside_low =  73.9500270;
+  outside_hi  = 111.5333560;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136801
+  Gdiag_no=-1
+  vno start=0, stop=136801
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 106 vertices, nripped=7425
+mean border=95.7, 42 (0) missing vertices, mean dist -0.1 [0.3 (%58.6)->0.2 (%41.4))]
+%89 local maxima, % 6 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0469 min
+
+
+Finding expansion regions
+mean absolute distance = 0.24 +- 0.34
+4394 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=suhan, nav=0, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=227268.6, rms=1.184
+030: dt: 0.5000, sse=202591.5, rms=0.671 (43.343%)
+rms = 0.7692/0.6710, sse=205854.2/202591.6, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+031: dt: 0.2500, sse=200418.0, rms=0.608 (9.359%)
+rms = 0.5984/0.6082, sse=199996.1/200418.0, time step reduction 2 of 3 to 0.125  0 0 1
+032: dt: 0.2500, sse=199996.1, rms=0.598 (1.618%)
+rms = 0.5940/0.5984, sse=199750.1/199996.1, time step reduction 3 of 3 to 0.062  0 0 1
+033: dt: 0.1250, sse=199750.1, rms=0.594 (0.732%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.4 minutes
+  done positioning surface
+Removing intersections
+#ET# mris_place_surface  3.63 minutes
+
+
+Writing output to ../surf/rh.white.preaparc
+#VMPC# mris_place_surfaces VmPeak  0
+mris_place_surface done
+#--------------------------------------------
+#@# CortexLabel rh Fri Jun 14 15:55:15 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mri_label2label --label-cortex ../surf/rh.white.preaparc aseg.presurf.mgz 0 ../label/rh.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+5 non-cortical segments detected
+only using segment with 8995 vertices
+erasing segment 1 (vno[0] = 80623)
+erasing segment 2 (vno[0] = 81289)
+erasing segment 3 (vno[0] = 83329)
+erasing segment 4 (vno[0] = 119450)
+#--------------------------------------------
+#@# CortexLabel+HipAmyg rh Fri Jun 14 15:55:33 EDT 2024
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri
+mri_label2label --label-cortex ../surf/rh.white.preaparc aseg.presurf.mgz 1 ../label/rh.cortex+hipamyg.label
+
+ Generating cortex label... RemoveHipAmgy=1
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+9 non-cortical segments detected
+only using segment with 6685 vertices
+erasing segment 1 (vno[0] = 46146)
+erasing segment 2 (vno[0] = 47027)
+erasing segment 3 (vno[0] = 80623)
+erasing segment 4 (vno[0] = 81289)
+erasing segment 5 (vno[0] = 83329)
+erasing segment 6 (vno[0] = 118314)
+erasing segment 7 (vno[0] = 119450)
+erasing segment 8 (vno[0] = 123631)
+
+Started at Fri Jun 14 15:49:58 EDT 2024 
+Ended   at Fri Jun 14 15:55:51 EDT 2024
+#@#%# recon-all-run-time-hours 0.098
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:55:51 EDT 2024
+done
+ 
+================== Creating surfaces rh - inflate2 ====================
+ 
+recon-all -subject subjectx_3 -hemi rh -smooth2 -inflate2 -curvHK -no-isrunning  -threads 4 -itkthreads 4
+fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.hTsqfV
+Fri Jun 14 15:55:51 EDT 2024
+
+setenv SUBJECTS_DIR /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+cd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf
+/Applications/freesurfer/7.4.1/bin/fs-check-version --s subjectx_3 --o /var/folders/mg/myn4fvg16s34h2qbm3zx743r0000gn/T//tmp.hTsqfV
+-rwxr-xr-x  1 root  wheel  18565 Jun 14  2023 /Applications/freesurfer/7.4.1/bin/fs-check-version
+
+freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+pid 42987
+Current FS Version freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+bstampfile exists /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/build-stamp.txt
+Subject FS Version: freesurfer-macOS-darwin_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer
+Actual FREESURFER_HOME /Applications/freesurfer/7.4.1
+-rw-rw-r--  1 suhanasaigoli  staff  288910 Jun 14 15:55 /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts/recon-all.log
+Darwin suhans-mbp-2.wireless-1x.unc.edu 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/transforms ~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+~/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3 
+#--------------------------------------------
+#@# Smooth2 rh Fri Jun 14 15:55:54 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_smooth -n 3 -nw -seed 1234 ../surf/rh.white.preaparc ../surf/rh.smoothwm \n
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation2 rh Fri Jun 14 15:55:57 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/scripts
+\n mris_inflate ../surf/rh.smoothwm ../surf/rh.inflated \n
+Reading ../surf/rh.smoothwm
+avg radius = 48.8 mm, total surface area = 82948 mm^2
+step 000: RMS=0.161 (target=0.015)   step 005: RMS=0.109 (target=0.015)   step 010: RMS=0.080 (target=0.015)   step 015: RMS=0.065 (target=0.015)   step 020: RMS=0.054 (target=0.015)   step 025: RMS=0.044 (target=0.015)   step 030: RMS=0.037 (target=0.015)   step 035: RMS=0.031 (target=0.015)   step 040: RMS=0.026 (target=0.015)   step 045: RMS=0.023 (target=0.015)   step 050: RMS=0.020 (target=0.015)   step 055: RMS=0.019 (target=0.015)   step 060: RMS=0.018 (target=0.015)   writing inflated surface to ../surf/rh.inflated
+writing sulcal depths to ../surf/rh.sulc
+
+inflation complete.
+inflation took 0.4 minutes
+mris_inflate utimesec    24.247173
+mris_inflate stimesec    1.602667
+mris_inflate ru_maxrss   237678592
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   735136
+mris_inflate ru_majflt   151
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    24
+mris_inflate ru_nivcsw   45435
+#--------------------------------------------
+#@# Curv .H and .K rh Fri Jun 14 15:56:24 EDT 2024
+/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf
+\n mris_curvature -w -seed 1234 rh.white.preaparc \n
+setting seed for random number generator to 1234
+total integrated curvature = 16.626*4pi (208.926) --> -16 handles
+ICI = 137.9, FI = 1251.0, variation=20131.046
+writing Gaussian curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.white.preaparc.K...done.
+writing mean curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.white.preaparc.H...mris_curvature done.
+rm -f rh.white.H
+ln -s rh.white.preaparc.H rh.white.H
+rm -f rh.white.K
+ln -s rh.white.preaparc.K rh.white.K
+\n mris_curvature -seed 1234 -thresh .999 -n -a 5 -w -distances 10 10 rh.inflated \n
+setting seed for random number generator to 1234
+normalizing curvature values.
+averaging curvature patterns 5 times.
+sampling 10 neighbors out to a distance of 10 mm
+250 vertices thresholded to be in k1 ~ [-0.19 0.28], k2 ~ [-0.11 0.07]
+total integrated curvature = 0.631*4pi (7.926) --> 0 handles
+ICI = 1.6, FI = 9.0, variation=156.757
+136 vertices thresholded to be in [-0.01 0.02]
+writing Gaussian curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.inflated.K...thresholding curvature at 99.90% level
+curvature mean = 0.000, std = 0.001
+139 vertices thresholded to be in [-0.13 0.14]
+done.
+writing mean curvature to /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.inflated.H...curvature mean = -0.016, std = 0.022
+mris_curvature done.
+
+Started at Fri Jun 14 15:55:51 EDT 2024 
+Ended   at Fri Jun 14 15:57:04 EDT 2024
+#@#%# recon-all-run-time-hours 0.020
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:57:04 EDT 2024
+done
+ 
+=========== Creating surfaces rh - map input asegdkt_segfile to surf ===============
+ 
+python3.10 -s /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py --inseg /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/mri/aparc.DKTatlas+aseg.orig.mgz --insurf /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/surf/rh.white.preaparc --incort /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.cortex.label --outaparc /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/subjectx_3/label/rh.aparc.DKTatlas.mapped.annot --seglut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/rh.DKTatlaslookup.txt --surflut /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/DKTatlaslookup.txt --projmm 0.6 --radius 2
+Traceback (most recent call last):
+  File "/Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer/recon_surf/sample_parc.py", line 28, in <module>
+    from lapy import TriaMesh
+ModuleNotFoundError: No module named 'lapy'

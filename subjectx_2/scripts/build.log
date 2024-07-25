@@ -1,0 +1,3 @@
+./run_fastsurfer.sh --t1 /Applications/freesurfer/7.4.1/subjects/bert/mri//T1.mgz --sid subjectx_2 --sd /Users/suhanasaigoli/Desktop/Projects/SURF/iNPH/FastSurfer --parallel --threads 4 --3T
+Fri, 14 Jun 2024 14:08:42 -0400
+2.3.0-dev+92e6653

@@ -1,0 +1,68 @@
+status file for recon-all
+Fri Jun 14 15:41:23 EDT 2024
+#@# Merge ASeg Fri Jun 14 15:41:23 EDT 2024
+#@# Intensity Normalization2 Fri Jun 14 15:41:23 EDT 2024
+#@# Mask BFS Fri Jun 14 15:43:28 EDT 2024
+#@# WM Segmentation Fri Jun 14 15:43:29 EDT 2024
+#@# Fill Fri Jun 14 15:45:21 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:21 EDT 2024
+\n\n
+\n\n
+#New# invocation of recon-all 
+#New# invocation of recon-all 
+\n\n
+\n\n
+status file for recon-all
+status file for recon-all
+Fri Jun 14 15:46:34 EDT 2024
+Fri Jun 14 15:46:34 EDT 2024
+#@# Inflation1 rh Fri Jun 14 15:46:34 EDT 2024
+#@# Inflation1 lh Fri Jun 14 15:46:34 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:56 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:46:56 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:46:59 EDT 2024
+#@# QSphere lh Fri Jun 14 15:46:59 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:46:59 EDT 2024
+#@# QSphere rh Fri Jun 14 15:46:59 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:49:53 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:49:56 EDT 2024
+#@# Fix Topology lh Fri Jun 14 15:49:56 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:49:57 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:50:00 EDT 2024
+#@# Fix Topology rh Fri Jun 14 15:50:00 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:55:51 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:55:54 EDT 2024
+#@# Smooth2 rh Fri Jun 14 15:55:54 EDT 2024
+#@# Inflation2 rh Fri Jun 14 15:55:57 EDT 2024
+#@# Curv .H and .K rh Fri Jun 14 15:56:24 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:57:03 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:57:04 EDT 2024
+\n\n
+#New# invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 14 15:57:05 EDT 2024
+#@# Smooth2 lh Fri Jun 14 15:57:05 EDT 2024
+#@# Inflation2 lh Fri Jun 14 15:57:08 EDT 2024
+#@# Curv .H and .K lh Fri Jun 14 15:57:32 EDT 2024
+recon-all -s subjectx_3 finished without error at Fri Jun 14 15:58:07 EDT 2024
