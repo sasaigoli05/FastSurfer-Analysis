@@ -16,4 +16,5 @@ itk-wheels
 *.lta
 *.label
 *.log
+*.DS_store
 
